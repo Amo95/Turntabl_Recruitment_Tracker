@@ -1,7 +1,7 @@
 import React from "react";
-import loginImg from "../../login.svg";
+import loginImg from "../../forgotPassword.png";
 
-export class Login extends React.Component {
+export class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -14,20 +14,21 @@ export class Login extends React.Component {
           <div className="image">
             <img src={loginImg} />
           </div>
+
           <div className="form">
+
             <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email" placeholder="Enter Email" />
+                <input type="email" name="email" placeholder="Enter Email" required/>
             </div>
-            <div className="form-group">
-                <label htmlFor="email">Password</label>
-                <input type="password" name="password" placeholder="Enter Password" />
-            </div>
+
           </div>
+
         </div>
+
         <div className="footer">
           <button type="button" className="button">
-            Login
+            Check E-mail after submit
           </button>
         </div>
       </div>
