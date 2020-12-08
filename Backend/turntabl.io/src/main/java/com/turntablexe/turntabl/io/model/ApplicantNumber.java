@@ -16,6 +16,16 @@ public class ApplicantNumber {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
+    public ApplicantNumber() {
+    }
+
+    public ApplicantNumber(int id, int phone_number, int whatsapp_number, ApplicantData applicantData) {
+        this.id = id;
+        this.phone_number = phone_number;
+        this.whatsapp_number = whatsapp_number;
+        this.applicantData = applicantData;
+    }
+
     public int getId() {
         return id;
     }

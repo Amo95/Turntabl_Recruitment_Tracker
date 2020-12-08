@@ -16,6 +16,16 @@ public class NationalService {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
+    public NationalService() {
+    }
+
+    public NationalService(int id, boolean service_status, int nss_number, ApplicantData applicantData) {
+        this.id = id;
+        this.service_status = service_status;
+        this.nss_number = nss_number;
+        this.applicantData = applicantData;
+    }
+
     public int getId() {
         return id;
     }

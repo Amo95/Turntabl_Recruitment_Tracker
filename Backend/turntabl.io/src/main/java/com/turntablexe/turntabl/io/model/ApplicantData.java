@@ -31,6 +31,10 @@ public class ApplicantData {
 
     private String cv;
 
+
+    public ApplicantData() {
+    }
+
     public ApplicantData(int id, String email, String first_name, String middle_name, String last_name, String nickname, String dob, String gender, String university, String year_of_graduation, String cv) {
         this.id = id;
         this.email = email;

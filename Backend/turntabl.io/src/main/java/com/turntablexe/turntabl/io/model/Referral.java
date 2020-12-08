@@ -14,6 +14,15 @@ public class Referral {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
+    public Referral() {
+    }
+
+    public Referral(int id, String full_name, ApplicantData applicantData) {
+        this.id = id;
+        this.full_name = full_name;
+        this.applicantData = applicantData;
+    }
+
     public int getId() {
         return id;
     }

@@ -17,6 +17,17 @@ public class Snnit {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
+    public Snnit() {
+    }
+
+
+    public Snnit(int id, boolean snnit_status, int snnit_number, ApplicantData applicantData) {
+        this.id = id;
+        this.snnit_status = snnit_status;
+        this.snnit_number = snnit_number;
+        this.applicantData = applicantData;
+    }
+
     public int getId() {
         return id;
     }
