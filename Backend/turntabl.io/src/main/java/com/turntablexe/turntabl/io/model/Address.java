@@ -6,16 +6,22 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int Id;
 
+    @Column(name = "street_address")
     private String street_address;
 
+    @Column(name = "street_address_line2")
     private String street_address_line2;
 
+    @Column(name = "city")
     private String city;
 
+    @Column(name = "region")
     private String region;
 
+    @Column(name = "zip_code")
     private String zip_code;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -25,14 +31,13 @@ public class Address {
     public Address() {
     }
 
-    public Address(int id, String street_address, String street_address_line2, String city, String region, String zip_code, ApplicantData applicantData) {
+    public Address(int id, String street_address, String street_address_line2, String city, String region, String zip_code) {
         Id = id;
         this.street_address = street_address;
         this.street_address_line2 = street_address_line2;
         this.city = city;
         this.region = region;
         this.zip_code = zip_code;
-        this.applicantData = applicantData;
     }
 
     public int getId() {

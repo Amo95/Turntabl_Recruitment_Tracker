@@ -7,10 +7,13 @@ public class Snnit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "snnit_status")
     private boolean snnit_status;
 
+    @Column(name = "snnit_number")
     private int snnit_number;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -21,11 +24,10 @@ public class Snnit {
     }
 
 
-    public Snnit(int id, boolean snnit_status, int snnit_number, ApplicantData applicantData) {
+    public Snnit(int id, boolean snnit_status, int snnit_number) {
         this.id = id;
         this.snnit_status = snnit_status;
         this.snnit_number = snnit_number;
-        this.applicantData = applicantData;
     }
 
     public int getId() {

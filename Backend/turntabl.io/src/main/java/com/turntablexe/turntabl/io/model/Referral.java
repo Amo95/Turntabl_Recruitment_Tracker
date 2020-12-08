@@ -6,8 +6,10 @@ import javax.persistence.*;
 public class Referral {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "full_name")
     private String full_name;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -17,10 +19,9 @@ public class Referral {
     public Referral() {
     }
 
-    public Referral(int id, String full_name, ApplicantData applicantData) {
+    public Referral(int id, String full_name) {
         this.id = id;
         this.full_name = full_name;
-        this.applicantData = applicantData;
     }
 
     public int getId() {

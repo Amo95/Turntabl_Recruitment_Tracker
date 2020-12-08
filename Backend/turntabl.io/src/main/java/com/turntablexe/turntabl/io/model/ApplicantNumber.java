@@ -6,10 +6,13 @@ import javax.persistence.*;
 public class ApplicantNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "phone_number")
     private int phone_number;
 
+    @Column(name = "whatsapp_number")
     private int whatsapp_number;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -19,11 +22,10 @@ public class ApplicantNumber {
     public ApplicantNumber() {
     }
 
-    public ApplicantNumber(int id, int phone_number, int whatsapp_number, ApplicantData applicantData) {
+    public ApplicantNumber(int id, int phone_number, int whatsapp_number) {
         this.id = id;
         this.phone_number = phone_number;
         this.whatsapp_number = whatsapp_number;
-        this.applicantData = applicantData;
     }
 
     public int getId() {
