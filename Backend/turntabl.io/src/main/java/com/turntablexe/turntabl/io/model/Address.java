@@ -22,6 +22,19 @@ public class Address {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
+    public Address() {
+    }
+
+    public Address(int id, String street_address, String street_address_line2, String city, String region, String zip_code, ApplicantData applicantData) {
+        Id = id;
+        this.street_address = street_address;
+        this.street_address_line2 = street_address_line2;
+        this.city = city;
+        this.region = region;
+        this.zip_code = zip_code;
+        this.applicantData = applicantData;
+    }
+
     public int getId() {
         return Id;
     }
