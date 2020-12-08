@@ -21,8 +21,8 @@ public class ApplicationDataRegistrationController {
 
     //register an applicant
     @PostMapping("/register")
-    public ApplicantData registerApplicant(@RequestBody Register register) throws Exception {
-        return 
+    public ApplicantData registerApplicant(@RequestBody ApplicantData applicantData) throws Exception {
+        return applicationDataRegistrationService.registerApplicants(new ApplicantData(applicantData.getId(),applicantData.getEmail(),applicantData.getFirst_name(), applicantData.getMiddle_name(),applicantData.getLast_name(), applicantData.getNickname(),applicantData.getDob(),applicantData.getGender(),applicantData.getUniversity(),applicantData.getYear_of_graduation(),applicantData.getCv()));
     }
 
 }

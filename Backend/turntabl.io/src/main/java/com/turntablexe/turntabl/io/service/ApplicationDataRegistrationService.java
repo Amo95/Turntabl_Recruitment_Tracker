@@ -16,11 +16,17 @@ public class ApplicationDataRegistrationService {
     private final ApplicationDataRepository applicationDataRepository;
 
     @Autowired
-    public ApplicationDataRegistrationService(ApplicationDataRepository applicationDataRepository ) {
+    public ApplicationDataRegistrationService(ApplicationDataRepository applicationDataRepository) {
         this.applicationDataRepository = applicationDataRepository;
 
     }
-    public ApplicationDataRepository registerApplicants(Register register) {
-        return applicationDataRepository.save(register);
+
+    public ApplicantData registerApplicants(ApplicantData applicantData) {
+        System.out.println(applicantData.toString());
+        if (applicationDataRepository.findByEmail(applicantData.getEmail()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User already exist with email");
+        }
+        ApplicantData createdApplicant = applicationDataRepository.save(applicantData);
+        return createdApplicant;
     }
 }
