@@ -6,10 +6,13 @@ import javax.persistence.*;
 public class NationalService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "service_status")
     private boolean service_status;
 
+    @Column(name = "nss_number")
     private int nss_number;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -19,11 +22,10 @@ public class NationalService {
     public NationalService() {
     }
 
-    public NationalService(int id, boolean service_status, int nss_number, ApplicantData applicantData) {
+    public NationalService(int id, boolean service_status, int nss_number) {
         this.id = id;
         this.service_status = service_status;
         this.nss_number = nss_number;
-        this.applicantData = applicantData;
     }
 
     public int getId() {

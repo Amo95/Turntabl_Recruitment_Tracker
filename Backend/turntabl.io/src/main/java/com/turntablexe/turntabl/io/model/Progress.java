@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Progress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -20,9 +21,8 @@ public class Progress {
     public Progress() {
     }
 
-    public Progress(int id, ApplicantData applicantData, Stages stage_id) {
+    public Progress(int id, Stages stage_id) {
         this.id = id;
-        this.applicantData = applicantData;
         this.stage_id = stage_id;
     }
 
