@@ -1,5 +1,6 @@
 import React from "react";
 import loginImg from "../../login.svg";
+// import ApplicationForm from "./applicantForm";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export class Login extends React.Component {
 
   render() {
     return (
+      
       <div className="base-container" ref={this.props.containerRef}>
         <div className="header">Login</div>
         <div className="content">
@@ -27,6 +29,7 @@ export class Login extends React.Component {
         </div>
         <div className="footer">
           <button type="button" className="button">
+            {/* <ApplicationForm /> */}
             Login
           </button>
         </div>
