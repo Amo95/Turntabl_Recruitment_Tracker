@@ -44,9 +44,15 @@ public class Controller {
         ApplicantData applicantData = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
-        applicantData.setEmail((applicantDetails.getEmail()));
-        applicantData.setLast_name(applicantDetails.getLast_name());
         applicantData.setFirst_name(applicantDetails.getFirst_name());
+        applicantData.setLast_name(applicantDetails.getLast_name());
+        applicantData.setMiddle_name(applicantDetails.getMiddle_name());
+        applicantData.setNickname(applicantDetails.getNickname());
+        applicantData.setDob(applicantDetails.getDob());
+        applicantData.setEmail((applicantDetails.getEmail()));
+        applicantData.setGender(applicantDetails.getGender());
+        applicantData.setUniversity(applicantDetails.getUniversity());
+        applicantData.setYear_of_graduation(applicantDetails.getYear_of_graduation());
         final ApplicantData updatedApplicant = applicationDataRepository.save(applicantData);
         return ResponseEntity.ok(updatedApplicant);
     }
