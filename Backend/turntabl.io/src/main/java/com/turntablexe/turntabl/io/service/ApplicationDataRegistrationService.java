@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class ApplicationDataRegistrationService {
+    @Autowired
     private final ApplicationDataRepository applicationDataRepository;
 
     @Autowired
@@ -19,12 +20,7 @@ public class ApplicationDataRegistrationService {
         this.applicationDataRepository = applicationDataRepository;
 
     }
-    public ApplicantData registerApplicants(ApplicantData applicationData) {
-        System.out.println(applicationData.toString());
-        if (applicationDataRepository.findByEmail(applicationData.getEmail()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User already exist with email");
-        }
-        ApplicantData createdApplicant = applicationDataRepository.save(applicationData);
-        return createdApplicant;
+    public ApplicationDataRepository registerApplicants(Register register) {
+        return applicationDataRepository.save(register);
     }
 }
