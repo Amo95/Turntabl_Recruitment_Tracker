@@ -2,8 +2,10 @@ package com.turntablexe.turntabl.io.model;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
+@Table(name= "ApplicationData")
 public class ApplicantData {
 
     @Id
@@ -135,5 +137,45 @@ public class ApplicantData {
 
     public void setCv(String cv) {
         this.cv = cv;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ApplicantData)) return false;
+        ApplicantData that = (ApplicantData) o;
+        return getId() == that.getId() &&
+                getEmail().equals(that.getEmail()) &&
+                getFirst_name().equals(that.getFirst_name()) &&
+                getMiddle_name().equals(that.getMiddle_name()) &&
+                getLast_name().equals(that.getLast_name()) &&
+                getNickname().equals(that.getNickname()) &&
+                getDob().equals(that.getDob()) &&
+                getGender().equals(that.getGender()) &&
+                getUniversity().equals(that.getUniversity()) &&
+                getYear_of_graduation().equals(that.getYear_of_graduation()) &&
+                getCv().equals(that.getCv());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getEmail(), getFirst_name(), getMiddle_name(), getLast_name(), getNickname(), getDob(), getGender(), getUniversity(), getYear_of_graduation(), getCv());
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicantData{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", middle_name='" + middle_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", dob='" + dob + '\'' +
+                ", gender='" + gender + '\'' +
+                ", university='" + university + '\'' +
+                ", year_of_graduation='" + year_of_graduation + '\'' +
+                ", cv='" + cv + '\'' +
+                '}';
     }
 }
