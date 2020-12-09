@@ -18,9 +18,17 @@ class App extends React.Component {
     return(
       
       <Router>
+<<<<<<< HEAD
         <Route path="/" component={Togle} exact={true}/>
         <Route path = "/recover" component = {ForgotPassword} exact = {true} strict />
       </Router>
+=======
+        
+      {/* <Togle /> */}
+      <Route path="/" component = {Togle} exact = {true}/>
+      <Route path="/recover" component = {ForgotPassword} strict exact = {true} />
+      </ Router>
+>>>>>>> innocent-frontend
     )
     
   }

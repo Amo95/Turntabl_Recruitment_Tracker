@@ -34,29 +34,27 @@ class Togle extends Component{
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
     return (
-      <div className="banner-img">
-        <div className="banner-relation">
-          <div className="App">
-            <div className="login">
-              <div className="container" ref={ref => (this.container = ref)}>
-                {isLogginActive && (
-                  <Login containerRef={ref => (this.current = ref)} />
-                )}
-                {!isLogginActive && (
-                  <Register containerRef={ref => (this.current = ref)} />
-                )}
-              </div>
-              <RightSide
-                current={current}
-                currentActive={currentActive}
-                containerRef={ref => (this.rightSide = ref)}
-                onClick={this.changeState.bind(this)}
-              />
+      <div className="backgroud-Img">
+        <div className="App">
+          
+          <div className="login">
+            <div className="container" ref={ref => (this.container = ref)}>
+              {isLogginActive && (
+                <Login containerRef={ref => (this.current = ref)} />
+              )}
+              {!isLogginActive && (
+                <Register containerRef={ref => (this.current = ref)} />
+              )}
             </div>
+            <RightSide
+              current={current}
+              currentActive={currentActive}
+              containerRef={ref => (this.rightSide = ref)}
+              onClick={this.changeState.bind(this)}
+            />
           </div>
         </div>
-      </div>);
-
+      </div> )
     }
 }
 
