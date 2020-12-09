@@ -1,7 +1,11 @@
 import React from "react";
+<<<<<<< HEAD:Frontend/rec_turn_tracker/src/components/login/register.jsx
 import loginImg from "../../login.svg";
 import axios from 'axios';
 
+=======
+import loginImg from "../../signup.svg";
+>>>>>>> 76c46d5e5a7f3b2bb9626fd9a401269987ff3db0:Frontend/rec_turn_tracker/src/components/applicant/register.jsx
 
 export class Register extends React.Component {
   constructor(props) {
@@ -37,6 +41,7 @@ export class Register extends React.Component {
   render() {
     const { email, password, confirmPassword } = this.state
     return (
+<<<<<<< HEAD:Frontend/rec_turn_tracker/src/components/login/register.jsx
       <form>
         <div className="base-container" ref={this.props.containerRef}>
           <div className="header">Register</div>
@@ -57,6 +62,26 @@ export class Register extends React.Component {
                 <label htmlFor="password">Password Confirmation</label>
                 <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={this.onChangeHandler} value={confirmPassword} required />
               </div>
+=======
+      <div className="base-container" ref={this.props.containerRef}>
+        <div className="header">Register</div>
+        <div className="content">
+          <div className="image">
+            <img src={loginImg} />
+          </div>
+          <div className="form">
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" name="email" placeholder="Enter Email" required/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Password</label>
+              <input type="password" name="password" placeholder="Enter Password" required/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password Confirmation</label>
+              <input type="password" name="confirmPassword" placeholder="Confirm Password" required/>
+>>>>>>> 76c46d5e5a7f3b2bb9626fd9a401269987ff3db0:Frontend/rec_turn_tracker/src/components/applicant/register.jsx
             </div>
           </div>
           <div className="footer">
