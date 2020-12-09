@@ -16,7 +16,7 @@ import java.util.Map;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/turntablexe/")
-public class Controller {
+public class ApplicantDataController {
     @Autowired
     private ApplicationDataRepository applicationDataRepository;
 
