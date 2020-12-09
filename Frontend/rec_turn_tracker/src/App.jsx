@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
-import { Login, Register } from "./components/applicant/index";
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
 import Togle from "./components/applicant/Togle";
+import ForgotPassword from "./components/applicant/forgotPassword";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +19,8 @@ class App extends React.Component {
       <Router>
         
       {/* <Togle /> */}
-      <Route path="/" component={Togle} exact={true}/>
+      <Route path="/" component = {Togle} exact = {true}/>
+      <Route path="/recover" component = {ForgotPassword} strict exact = {true} />
       </ Router>
     )
     

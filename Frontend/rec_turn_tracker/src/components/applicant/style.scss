@@ -35,6 +35,10 @@
         label {
           font-size: 20px;
         }
+        label .note {
+          font-size: 20px;
+          color: red;
+        }
         input {
           margin-top: 6px;
           min-width: 18em;
@@ -62,5 +66,15 @@
 
   .footer {
     margin-top: 3em;
+  }
+  .note {
+    margin-top:1em ;
+    font-size: 20px;
+    color: rgb(255, 0, 98);
+    font-family: "Open Sans", sans-serif;;
+    &:hover {
+      color: #ff0095;
+      font-style: italic;
+    }
   }
 }
