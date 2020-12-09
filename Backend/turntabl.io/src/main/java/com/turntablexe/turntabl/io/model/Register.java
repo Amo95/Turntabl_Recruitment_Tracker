@@ -3,10 +3,11 @@ package com.turntablexe.turntabl.io.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="register",schema = "applicant")
 public class Register {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Column(name = "id")
     private int id;
 
