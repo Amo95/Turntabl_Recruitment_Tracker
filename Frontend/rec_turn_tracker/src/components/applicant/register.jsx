@@ -8,6 +8,7 @@ export class Register extends React.Component {
 
   render() {
     return (
+      <form>
       <div className="base-container" ref={this.props.containerRef}>
         <div className="header">Register</div>
         <div className="content">
@@ -30,12 +31,13 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="button">
+          <button type="submit" className="button">
             Register
             
           </button>
         </div>
       </div>
+      </form>
     );
   }
 }
