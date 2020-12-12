@@ -10,7 +10,8 @@ export class Register extends React.Component {
   state = {
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    message: () => <></>
   }
 
   onchangeHandler = (event) => {
@@ -18,10 +19,11 @@ export class Register extends React.Component {
   }
 
   render() {
-    const { email, password, confirmPassword } = this.state
+    const { email, password, confirmPassword, message } = this.state
 
     return (
       <div className="base-container" ref={this.props.containerRef}>
+        {message}
         <div className="header">Register</div>
         <div className="content">
           <div className="image">
