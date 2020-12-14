@@ -90,8 +90,7 @@ public class ApplicantDataController {
         ApplicantData applicantData = fileUploadService.uploadToDB(file);
 
         FileUploadResponse response = new FileUploadResponse();
-        System.out.println(applicantData.getCvFiletype() == "application/pdf");
-        if((applicantData != null)){
+        if((applicantData != null && file.getContentType().equals("application/pdf"))){
             String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/api/turntablexe/applicants/download/")
                     .path(applicantData.getId())
@@ -103,7 +102,7 @@ public class ApplicantDataController {
             response.setMessage("File Uploaded Successfullly");
             return response;
         }
-        response.setMessage("Something went wrong!!");
+        response.setMessage("Something went wrong!! upload pdf file");
         return response;
     }
 
@@ -116,11 +115,4 @@ public class ApplicantDataController {
                 .body(new ByteArrayResource(applicantDataToRet.getCv()));
     }
 
-//    @PutMapping("/applicants/upload/{id}")
-//    public FileUploadResponse uploadToDB2(@PathVariable(value = "id") String applicantId, @RequestParam("file") MultipartFile file) throws ResourceNotFoundException {
-//
-//        ApplicantData applicant = applicationDataRepository.findById(applicantId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
-//
-//    }
 }
