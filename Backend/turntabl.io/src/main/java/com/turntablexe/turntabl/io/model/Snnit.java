@@ -2,19 +2,15 @@ package com.turntablexe.turntabl.io.model;
 
 import javax.persistence.*;
 
-@Entity
+
 public class Snnit {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private boolean snnit_status;
 
     private int snnit_number;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
     public Snnit() {

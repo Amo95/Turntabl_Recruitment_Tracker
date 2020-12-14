@@ -2,18 +2,13 @@ package com.turntablexe.turntabl.io.model;
 
 import javax.persistence.*;
 
-@Entity
 public class ApplicantNumber {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int phone_number;
 
     private int whatsapp_number;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
     public ApplicantNumber() {

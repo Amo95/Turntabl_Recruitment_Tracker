@@ -4,9 +4,17 @@ package com.turntablexe.turntabl.io.controller;
 import com.turntablexe.turntabl.io.exception.ResourceNotFoundException;
 import com.turntablexe.turntabl.io.model.ApplicantData;
 import com.turntablexe.turntabl.io.repository.ApplicationDataRepository;
+import com.turntablexe.turntabl.io.response.FileUploadResponse;
+import com.turntablexe.turntabl.io.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -20,13 +28,16 @@ public class ApplicantDataController {
     @Autowired
     private ApplicationDataRepository applicationDataRepository;
 
+    @Autowired
+    private FileUploadService fileUploadService;
+
     @GetMapping("/applicants")
     public List<ApplicantData> getAllApplicant() {
         return applicationDataRepository.findAll();
     }
 
     @GetMapping("/applicants/{id}")
-    public ResponseEntity<ApplicantData> getApplicantById(@PathVariable(value = "id") Long applicantId)
+    public ResponseEntity<ApplicantData> getApplicantById(@PathVariable(value = "id") String applicantId)
             throws ResourceNotFoundException {
         ApplicantData applicantData = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicants not found for this id :: " + applicantId));
@@ -39,8 +50,8 @@ public class ApplicantDataController {
     }
 
     @PutMapping("/applicants/{id}")
-    public ResponseEntity<ApplicantData> updateApplicant(@PathVariable(value = "id") Long applicantId,
-                                                   @Valid @RequestBody ApplicantData applicantDetails) throws ResourceNotFoundException {
+    public ResponseEntity<ApplicantData> updateApplicant(@PathVariable(value = "id") String applicantId,
+                                                         @Valid @RequestBody ApplicantData applicantDetails) throws ResourceNotFoundException {
         ApplicantData applicantData = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
@@ -58,7 +69,7 @@ public class ApplicantDataController {
     }
 
     @DeleteMapping("/applicants/{id}")
-    public Map<String, Boolean> deleteApplicants(@PathVariable(value = "id") Long applicantId)
+    public Map<String, Boolean> deleteApplicants(@PathVariable(value = "id") String applicantId)
             throws ResourceNotFoundException {
         ApplicantData applicant = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
@@ -68,4 +79,48 @@ public class ApplicantDataController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
+    @PostMapping("/applicants/upload/local")
+    public void uploadToLocal(@RequestParam("file") MultipartFile file){
+        fileUploadService.uploadToLocal(file);
+    }
+
+    @PostMapping("/applicants/upload/db/")
+    public FileUploadResponse uploadCVToDB(@RequestParam("file") MultipartFile file){
+        ApplicantData applicantData = fileUploadService.uploadToDB(file);
+
+        FileUploadResponse response = new FileUploadResponse();
+        System.out.println(applicantData.getCvFiletype() == "application/pdf");
+        if((applicantData != null)){
+            String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/api/turntablexe/applicants/download/")
+                    .path(applicantData.getId())
+                    .toUriString();
+            response.setDownloadUri(downloadUri);
+            response.setId(applicantData.getId());
+            response.setFileType(applicantData.getCvFiletype());
+            response.setUploadStatus(true);
+            response.setMessage("File Uploaded Successfullly");
+            return response;
+        }
+        response.setMessage("Something went wrong!!");
+        return response;
+    }
+
+    @GetMapping("/applicants/download/{id}")
+    public ResponseEntity<Resource> downloadCV(@PathVariable String id){
+        ApplicantData applicantDataToRet = fileUploadService.downloadCV(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(applicantDataToRet.getCvFiletype()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDataToRet.getCvFilename())
+                .body(new ByteArrayResource(applicantDataToRet.getCv()));
+    }
+
+//    @PutMapping("/applicants/upload/{id}")
+//    public FileUploadResponse uploadToDB2(@PathVariable(value = "id") String applicantId, @RequestParam("file") MultipartFile file) throws ResourceNotFoundException {
+//
+//        ApplicantData applicant = applicationDataRepository.findById(applicantId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
+//
+//    }
 }

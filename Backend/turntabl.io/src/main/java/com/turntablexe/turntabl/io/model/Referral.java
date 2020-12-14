@@ -2,16 +2,13 @@ package com.turntablexe.turntabl.io.model;
 
 import javax.persistence.*;
 
-@Entity
+
 public class Referral {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int id;
 
     private String full_name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
     private ApplicantData applicantData;
 
     public Referral() {
