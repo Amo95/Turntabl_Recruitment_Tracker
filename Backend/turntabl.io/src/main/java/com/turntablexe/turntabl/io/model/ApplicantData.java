@@ -4,6 +4,7 @@ package com.turntablexe.turntabl.io.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "applicantdata")
 public class ApplicantData {
 
     @Id

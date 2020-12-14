@@ -3,6 +3,7 @@ package com.turntablexe.turntabl.io.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Register")
 public class Register {
 
     @Id
@@ -10,7 +11,7 @@ public class Register {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "email")
+    @Column(name = "email",unique = true)
     private String email;
 
     @Column(name = "password")

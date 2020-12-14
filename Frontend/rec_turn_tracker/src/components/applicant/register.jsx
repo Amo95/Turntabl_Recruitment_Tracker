@@ -21,9 +21,10 @@ export class Register extends React.Component {
   render() {
     const { email, password, confirmPassword, message } = this.state
 
+
     return (
       <div className="base-container" ref={this.props.containerRef}>
-        {message}
+        {message()}
         <div className="header">Register</div>
         <div className="content">
           <div className="image">

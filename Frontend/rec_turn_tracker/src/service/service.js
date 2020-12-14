@@ -10,7 +10,7 @@ export const register = (email, password, confirm_password) => {
 
     if (password.length >= 6 && password === confirm_password && (email !== null || email !== "") && email.match(email_re)) {
 
-        axios.post(BASE_URL + "register", { email, password })
+        axios.post(BASE_URL + "register", { email: email, password: password })
             .then(res => console.log(res))
             .catch(err => console.log(err));
     } else {
