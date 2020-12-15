@@ -34,7 +34,7 @@ class Togle extends Component{
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
     return (
-      <div className="backgroud-Img">
+      <div className="banner-Img">
         <div className="App">
           
           <div className="login">
