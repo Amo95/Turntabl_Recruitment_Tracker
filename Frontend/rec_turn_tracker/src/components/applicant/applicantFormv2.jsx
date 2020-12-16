@@ -10,16 +10,21 @@ import {
   Input,
   Label
 } from "reactstrap";
-import loginImg from "../../signup.svg";
+import "./applyv2.css"
+
+import { Redirect } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.css";
+import SimpleReactValidator from 'simple-react-validator';
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import Header from "./header";
 
 // First component
 class FirstStep extends React.Component {
   constructor(props) {
+
     super(props);
     this.state = {
       first_name: "",
@@ -30,11 +35,25 @@ class FirstStep extends React.Component {
       gender: "",
     };
   }
+
+  validator = new SimpleReactValidator();
+
   onChangeHandler = (event) => {
     let name = event.target.name;
     let value = event.target.value;
     this.setState({ [name]: value })
   }
+
+  submitForm() {
+    if (this.validator.allValid()) {
+      alert('You submitted the form and stuff!');
+    } else {
+      this.validator.showMessages();
+
+      this.forceUpdate();
+    }
+  }
+
   render() {
     const { first_name, middle_name, last_name, nick_name, date_of_birth, gender } = this.state;
     return <Container>
@@ -44,6 +63,7 @@ class FirstStep extends React.Component {
           <FormGroup>
             <Label for="first_name">First Name</Label>
             <Input type="text" name="first_name" id="first_name" placeholder="Enter first name" value={first_name} onChange={this.onChangeHandler} />
+            {this.validator.message('first_name', first_name, 'required|alpha')}
           </FormGroup>
         </Col>
 
@@ -345,13 +365,9 @@ class Applicant extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid appv2">
-        <div className="row">
-          <div className="card" style={{ width: "100%", height: "180px" }}>
-            <img src={loginImg} style={{ width: "100%" }} />
-          </div>
-        </div>
-        <Container fluid>
+      <div className="contain">
+        <Header />
+        <Container fluid >
           <Row>
             <Col xs={12} md={10} className="mr-auto ml-auto">
               <ReactWizard
@@ -364,6 +380,19 @@ class Applicant extends React.Component {
             </Col>
           </Row>
         </Container>
+        <div className="mt-3 footer-v2">
+          <div className="row text-light">
+            <div className="col-md-4"></div>
+            <div className="col-md-6">
+              <p>Made with <i className="fa fa-heart"></i> by turntabl Ghana</p>
+              <span>Copyright &copy; || All right reserved</span>
+            </div>
+            <div className="col-md-2">
+              <div><a href="https://github.com/turntabl" className="link" target="_blank">Follow us on <i className="fa fa-github"></i></a></div>
+              <div><a href="https://twitter.com/turntablio" className="link" target="_blank">Follow us on <i className="fa fa-twitter"> </i></a></div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -5,11 +5,8 @@ import com.turntablexe.turntabl.io.model.ApplicantData;
 import com.turntablexe.turntabl.io.model.Register;
 import com.turntablexe.turntabl.io.repository.ApplicantDataRepository;
 import com.turntablexe.turntabl.io.repository.RegisterRepository;
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 

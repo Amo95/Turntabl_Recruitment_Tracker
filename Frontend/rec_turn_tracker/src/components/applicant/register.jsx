@@ -1,8 +1,10 @@
 import React from "react";
 import loginImg from "../../signup.svg";
-import { register } from '../../service/service';
+import { register } from '../../service/actions/actions';
+import { connect } from 'react-redux'
+import { message } from 'antd';
 
-export class Register extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -11,20 +13,24 @@ export class Register extends React.Component {
     email: "",
     password: "",
     confirmPassword: "",
-    message: () => <></>
   }
 
   onchangeHandler = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  submitHandler = (event) => {
+    const { email, password, confirmPassword } = this.state
+    this.props.dispatch(register(email, password, confirmPassword))
+    
+    this.props.status ? message.success(this.props.message) : message.error(this.props.message)
+  }
+  
   render() {
-    const { email, password, confirmPassword, message } = this.state
-
+    const { email, password, confirmPassword } = this.state
 
     return (
       <div className="base-container" ref={this.props.containerRef}>
-        {message()}
         <div className="header">Register</div>
         <div className="content">
           <div className="image">
@@ -46,11 +52,19 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-          <button type="submit" className="button" onClick={() => register(email, password, confirmPassword)}>
+          <button type="submit" className="button" onClick={this.submitHandler}>
             Register
           </button>
         </div>
+
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  status: state.Register.status,
+  message: state.Register.message
+});
+
+export default connect(mapStateToProps)(Register)
