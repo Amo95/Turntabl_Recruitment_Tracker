@@ -5,31 +5,36 @@ import com.turntablexe.turntabl.io.model.OfferLetterMail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 import org.xhtmlrenderer.resource.XMLResource;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.MimeBodyPart;
+;
 import javax.mail.internet.MimeMessage;
-import javax.mail.util.ByteArrayDataSource;
+
 import javax.transaction.Transactional;
 import java.io.*;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+;
 @Service
 @Transactional
 public class OfferLetterMailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    private String generateDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy ");
+        return LocalDateTime.now().format(formatter);
+    }
 
     public void sendoffermail(OfferLetterMail offerLetterMail) throws AddressException, MessagingException, IOException {
 
@@ -55,7 +60,7 @@ public class OfferLetterMailService {
                 "\t <p align=\"right\">2nd Floor, Sonnidom House</p>\n" +
                 "\t<p align=\"right\">Mile 7</p>\n" +
                 "\t<p align=\"right\">Achimota, Accra</p>\n" +
-                "\t<p align=\"right\">Monday 14 September 2020</p>\n" +
+                "\t<p align=\"right\">" + generateDateTime()+ "</p>\n" +
                 "\t</div>\n" +
                 "\n" +
                 "\t<div align=\"left\">\n" +
@@ -95,11 +100,8 @@ public class OfferLetterMailService {
                 "</body>\n" +
                 "</html>";
         helper.setText(bodyText, true);
-//        FileSystemResource res = new FileSystemResource(new File("C:/Users/Joshua/Desktop/turntablExe/Turntabl_Recruitment_Tracker/Backend/turntabl.io/src/main/java/com/turntablexe/turntabl/io/service/logo.jpg"));
-//        helper.addInline("imagelogo", res);
 
-
-        // tring to convert xhtml to PDF
+        // trying to convert xhtml to PDF
         ByteArrayResource htmlBytes = new ByteArrayResource(bodyText.getBytes());
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         org.w3c.dom.Document document = XMLResource.load(new ByteArrayInputStream(bodyText.getBytes())).getDocument();

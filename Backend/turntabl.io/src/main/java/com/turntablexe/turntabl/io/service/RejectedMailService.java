@@ -14,13 +14,18 @@ import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @Transactional
 public class RejectedMailService {
     @Autowired
     private JavaMailSender javaMailSender;
-
+    private String generateDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy ");
+        return LocalDateTime.now().format(formatter);
+    }
     public void sendrejectedmail(RejectedMail rejectedMail) throws AddressException, MessagingException, IOException {
 
         MimeMessage msg = javaMailSender.createMimeMessage();
@@ -45,7 +50,7 @@ public class RejectedMailService {
                 "\t <p align=\"right\">2nd Floor, Sonnidom House</p>\n" +
                 "\t<p align=\"right\">Mile 7</p>\n" +
                 "\t<p align=\"right\">Achimota, Accra</p>\n" +
-                "\t<p align=\"right\">Monday 14 September 2020</p>\n" +
+                "\t<p align=\"right\">"+ generateDateTime()+ "</p>\n" +
                 "\t</div>\n" +
                 "\n" +
                 "\t<div align=\"left\">\n" +
@@ -71,8 +76,6 @@ public class RejectedMailService {
                 "</body>\n" +
                 "</html>";
         helper.setText(bodyText, true);
-//        FileSystemResource res = new FileSystemResource(new File("C:/Users/Joshua/Desktop/turntablExe/Turntabl_Recruitment_Tracker/Backend/turntabl.io/src/main/java/com/turntablexe/turntabl/io/service/logo.jpg"));
-//        helper.addInline("imagelogo",res);
 
         javaMailSender.send(msg);
 
