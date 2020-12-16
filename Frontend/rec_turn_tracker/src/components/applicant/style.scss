@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 .base-container {
   width: 100%;
   display: flex;
@@ -534,4 +536,148 @@
   border: none;
   border-radius: 6px;
   outline: none;
+}
+
+//====================================================================================================
+//  portal directory Scss
+//====================================================================================================
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  font-family: "Open Sans" sans-serif;
+  background-color: #4B0082;
+  border: 0px;
+  box-shadow: 0px 0px 7px 0.8px rgb(255, 123, 0)
+}
+
+.logo {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.nav-links li {
+  list-style: none;
+  
+}
+
+.nav-links li :hover{
+  color: rgb(255, 123, 0);
+}
+
+.nav-links a {
+  color: #cfcfcf;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline;
+  width: fit-content;
+
+}
+
+.nav-links p {
+  color: #d1cccca8;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline;
+  width: fit-content;
+
+}
+
+.buggerLines {
+  display: none;
+  cursor: pointer;
+}
+
+.buggerLines div {
+  width: 25px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-links{
+    width: 60%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+  
+  .nav-links{
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: #4B0082;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    transform: translateX(100%);
+    transition: transform 0.7s ease-in-out;
+
+  }
+  .nav-links .turnOff {
+    display: none;
+  }
+
+  .nav-links li {
+    opacity: 0px;
+
+  }
+
+  .buggerLines{
+    display: block;
+    background-color: rgb(255, 123, 0);
+    color: #ffffff;
+    border: 0px;
+    border-radius: 3px;
+  }
+
+}
+
+.nav-active {
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFrame {
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1px;
+    transform: translateX(0px);
+  }
+}
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px,6px);
+}
+
+.toggle .line2{
+  opacity: 0;
+}
+
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px,-6px);
 }
