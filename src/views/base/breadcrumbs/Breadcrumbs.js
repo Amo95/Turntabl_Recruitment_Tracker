@@ -12,6 +12,9 @@ import {
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 import routes from '../../../routes'
+import RecruitmentTables from './recruitment-tables'
+// import Searchs from './searchs'
+
 
 const Breadcrumbs = () => {
   return (
@@ -19,17 +22,23 @@ const Breadcrumbs = () => {
       <CCol xs="12">
         <CCard>
           <CCardHeader>
-            Bootstrap Breadcrumb
-            <DocsLink name="CBreadcrumb"/>
+            Recruitment Tracking Sheet
+             {/* <DocsLink name="CBreadcrumb"/> */}
           </CCardHeader>
           <CCardBody>
-            <h6>CBreadcrumbRouter wrapper component</h6>
+
+          {/* <div style = {{width:"50%"}}><Searchs/>
+              </div>
+              <br/> */}
+            {/* <h6>CBreadcrumbRouter wrapper component</h6>
             <CBreadcrumbRouter routes={routes}/>
             <h6>Manual</h6>
             <CBreadcrumb>
               <CBreadcrumbItem>
-                <CLink>Home</CLink>
-              </CBreadcrumbItem>
+                <CLink>Home</CLink>  */}
+                <RecruitmentTables/>
+
+              {/* </CBreadcrumbItem>
               <CBreadcrumbItem active>Library</CBreadcrumbItem>
             </CBreadcrumb>
             <CBreadcrumb>
@@ -54,11 +63,13 @@ const Breadcrumbs = () => {
               <CBreadcrumbItem active>
                 <span>Bootstrap</span>
               </CBreadcrumbItem>
-            </CBreadcrumb>
-          </CCardBody>
+            </CBreadcrumb>  */}
+          </CCardBody> 
         </CCard>
       </CCol>
     </CRow>
+
+
   )
 }
 
