@@ -14,10 +14,12 @@ import java.nio.file.Paths;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-    private String fileUploadPath = "/media/james/444FE6C10F431832/uploaded_";
+    private final String fileUploadPath = "/media/james/444FE6C10F431832/";
 
     @Autowired
     private ApplicationDataRepository applicationDataRepository;
+
+    ApplicantData applicantData = new ApplicantData();
 
     @Override
     public void uploadToLocal(MultipartFile file) {
@@ -32,8 +34,8 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Override
     public ApplicantData uploadToDB(MultipartFile file) {
-        ApplicantData applicantData = new ApplicantData();
         try {
+            applicantData.setCvDirectory(Paths.get(fileUploadPath + file.getOriginalFilename()).toString());
             applicantData.setCv(file.getBytes());
             applicantData.setCvFilename(file.getOriginalFilename());
             applicantData.setCvFiletype(file.getContentType());

@@ -4,8 +4,9 @@ package com.turntablexe.turntabl.io.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 @Entity
 @Table(name="applicantdata")
@@ -40,11 +41,14 @@ public class ApplicantData {
 
     private byte[] cv;
 
+    private String CvDirectory;
 
     public ApplicantData() {
     }
 
-    public ApplicantData(String id, String email, String first_name, String middle_name, String last_name, String nickname, LocalDate dob, String gender, String university, String year_of_graduation, String cvFiletype, String cvFilename) {
+    public ApplicantData(String id, String email, String first_name, String middle_name, String last_name, String nickname, LocalDate dob, String gender, String university,
+                         String year_of_graduation, String cvFiletype, String cvFilename,
+                         String CvDirectory) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;
@@ -57,6 +61,7 @@ public class ApplicantData {
         this.year_of_graduation = year_of_graduation;
         this.cvFiletype = cvFiletype;
         this.cvFilename = cvFilename;
+        this.CvDirectory = CvDirectory;
     }
 
     public String getId() {
@@ -175,22 +180,39 @@ public class ApplicantData {
         this.cvFilename = filename;
     }
 
-    @Override
-    public String toString() {
-        return "ApplicantData{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", middle_name='" + middle_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", dob=" + dob +
-                ", gender='" + gender + '\'' +
-                ", university='" + university + '\'' +
-                ", year_of_graduation='" + year_of_graduation + '\'' +
-                ", cvFilename='" + cvFilename + '\'' +
-                ", cvFiletype='" + cvFiletype + '\'' +
-                ", cv=" + Arrays.toString(cv) +
-                '}';
+    @Column(name="file_directory", length=100)
+    public String getCvDirectory() {
+        return CvDirectory;
     }
+
+    public void setCvDirectory(String fileDirectory) {
+        this.CvDirectory = fileDirectory;
+    }
+
+    @Column(name = "cvFilePath", length = 500)
+    public Path getFilePath() {
+        if (cvFilename == null || cvFilename == null) {
+            return null;
+        }
+        return Paths.get(CvDirectory, cvFilename);
+    }
+
+//    @Override
+//    public String toString() {
+//        return "ApplicantData{" +
+//                "id=" + id +
+//                ", email='" + email + '\'' +
+//                ", first_name='" + first_name + '\'' +
+//                ", middle_name='" + middle_name + '\'' +
+//                ", last_name='" + last_name + '\'' +
+//                ", nickname='" + nickname + '\'' +
+//                ", dob=" + dob +
+//                ", gender='" + gender + '\'' +
+//                ", university='" + university + '\'' +
+//                ", year_of_graduation='" + year_of_graduation + '\'' +
+//                ", cvFilename='" + cvFilename + '\'' +
+//                ", cvFiletype='" + cvFiletype + '\'' +
+//                ", cv=" + Arrays.toString(cv) +
+//                '}';
+//    }
 }

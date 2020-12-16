@@ -6,6 +6,7 @@ import com.turntablexe.turntabl.io.model.ApplicantData;
 import com.turntablexe.turntabl.io.repository.ApplicationDataRepository;
 import com.turntablexe.turntabl.io.response.FileUploadResponse;
 import com.turntablexe.turntabl.io.service.FileUploadService;
+import com.turntablexe.turntabl.io.service.FileUploadServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -17,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/turntablexe/")
 public class ApplicantDataController {
+
     @Autowired
     private ApplicationDataRepository applicationDataRepository;
 
@@ -85,26 +89,28 @@ public class ApplicantDataController {
         fileUploadService.uploadToLocal(file);
     }
 
-    @PostMapping("/applicants/upload/db/")
-    public FileUploadResponse uploadCVToDB(@RequestParam("file") MultipartFile file){
-        ApplicantData applicantData = fileUploadService.uploadToDB(file);
-
-        FileUploadResponse response = new FileUploadResponse();
-        if((applicantData != null && file.getContentType().equals("application/pdf"))){
-            String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/turntablexe/applicants/download/")
-                    .path(applicantData.getId())
-                    .toUriString();
-            response.setDownloadUri(downloadUri);
-            response.setId(applicantData.getId());
-            response.setFileType(applicantData.getCvFiletype());
-            response.setUploadStatus(true);
-            response.setMessage("File Uploaded Successfullly");
-            return response;
-        }
-        response.setMessage("Something went wrong!! upload pdf file");
-        return response;
-    }
+//    @PostMapping("/applicants/upload/db/")
+//    public FileUploadResponse uploadCVToDB(@RequestParam("file") MultipartFile file){
+//        ApplicantData applicantData = fileUploadService.uploadToDB(file);
+//
+//        FileUploadResponse response = new FileUploadResponse();
+//        if((applicantData != null && file.getContentType().equals("application/pdf"))){
+//            String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                    .path("/api/turntablexe/applicants/download/")
+//                    .path(applicantData.getId())
+//                    .toUriString();
+//            response.setDownloadUri(downloadUri);
+//            response.setId(applicantData.getId());
+//            response.setFileType(applicantData.getCvFiletype());
+//            response.setUploadStatus(true);
+//            fileUploadService.uploadToLocal(file);
+//            response.setMessage("File Uploaded Successfullly");
+//
+//            return response;
+//        }
+//        response.setMessage("Something went wrong!! upload pdf file");
+//        return response;
+//    }
 
     @GetMapping("/applicants/download/{id}")
     public ResponseEntity<Resource> downloadCV(@PathVariable String id){
@@ -113,6 +119,36 @@ public class ApplicantDataController {
                 .contentType(MediaType.parseMediaType(applicantDataToRet.getCvFiletype()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDataToRet.getCvFilename())
                 .body(new ByteArrayResource(applicantDataToRet.getCv()));
+    }
+
+    @PutMapping("/applicants/upload/db/{id}")
+    public FileUploadResponse uploadDatabase(@PathVariable(value = "id") String applicantId, @RequestParam("file") MultipartFile file) throws ResourceNotFoundException {
+        ApplicantData applicantData = applicationDataRepository.findById(applicantId)
+                .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
+
+        FileUploadResponse response = new FileUploadResponse();
+        ApplicantData applicantData1 = fileUploadService.uploadToDB(file);
+
+        if((applicantData != null && file.getContentType().equals("application/pdf"))) {
+            applicantData.setCv(applicantData1.getCv());
+            applicantData.setCvDirectory(applicantData1.getCvDirectory());
+            applicantData.setCvFiletype(applicantData1.getCvFiletype());
+            applicantData.setCvFilename(applicantData1.getCvFilename());
+            final ApplicantData updatedDatabase = applicationDataRepository.save(applicantData);
+//          response header status
+            String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/api/turntablexe/applicants/download/db")
+                    .path(applicantData.getId())
+                    .toUriString();
+            response.setDownloadUri(downloadUri);
+            response.setId(applicantData.getId());
+            response.setFileType(applicantData.getCvFiletype());
+            response.setUploadStatus(true);
+            response.setMessage("Updated successfully");
+            return response;
+        }
+        response.setMessage("Bad filetype! Upload only pdf");
+        return response;
     }
 
 }
