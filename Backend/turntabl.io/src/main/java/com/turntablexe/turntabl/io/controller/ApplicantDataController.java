@@ -127,9 +127,10 @@ public class ApplicantDataController {
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
         FileUploadResponse response = new FileUploadResponse();
-        ApplicantData applicantData1 = fileUploadService.uploadToDB(file);
+        ApplicantData applicantData1 = fileUploadService.uploadToDB(file, applicantId);
 
         if((applicantData != null && file.getContentType().equals("application/pdf"))) {
+
             applicantData.setCv(applicantData1.getCv());
             applicantData.setCvDirectory(applicantData1.getCvDirectory());
             applicantData.setCvFiletype(applicantData1.getCvFiletype());

@@ -1,5 +1,6 @@
 package com.turntablexe.turntabl.io.service;
 
+import com.turntablexe.turntabl.io.exception.ResourceNotFoundException;
 import com.turntablexe.turntabl.io.model.ApplicantData;
 import com.turntablexe.turntabl.io.repository.ApplicationDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Autowired
     private ApplicationDataRepository applicationDataRepository;
 
-    ApplicantData applicantData = new ApplicantData();
+//    ApplicantData applicantData = new ApplicantData();
 
     @Override
     public void uploadToLocal(MultipartFile file) {
@@ -33,15 +34,18 @@ public class FileUploadServiceImpl implements FileUploadService {
     }
 
     @Override
-    public ApplicantData uploadToDB(MultipartFile file) {
+    public ApplicantData uploadToDB(MultipartFile file, String id) {
         try {
+            ApplicantData applicantData = applicationDataRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + id));
             applicantData.setCvDirectory(Paths.get(fileUploadPath + file.getOriginalFilename()).toString());
             applicantData.setCv(file.getBytes());
             applicantData.setCvFilename(file.getOriginalFilename());
             applicantData.setCvFiletype(file.getContentType());
             ApplicantData applicantData1ToRet = applicationDataRepository.save(applicantData);
             return applicantData1ToRet;
-        } catch (IOException e) {
+
+        } catch (IOException | ResourceNotFoundException e) {
             e.printStackTrace();
             return  null;
         }
