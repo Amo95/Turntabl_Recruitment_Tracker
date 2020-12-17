@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 .base-container {
   width: 100%;
   display: flex;
@@ -35,7 +37,10 @@
         label {
           font-size: 20px;
         }
-
+        label .note {
+          font-size: 20px;
+          color: red;
+        }
         input {
           margin-top: 6px;
           min-width: 18em;
@@ -64,7 +69,615 @@
 
   .footer {
     margin-top: 3em;
-  } 
+  }
+  .note {
+    margin-top:1em ;
+    font-size: 20px;
+    color: rgb(255, 0, 98);
+    font-family: "Open Sans", sans-serif;;
+    &:hover {
+      color: #ff0095;
+      font-style: italic;
+    }
+  }
+}
+
+//==========================================================================================
+
+.base-container-form-header {
+  width: 70%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header-form {
+    font-size: 64px;
+    font-family: "Open Sans", sans-serif;
+  }
+}
+
+//============================================================================================
 
 
+// form container
+.base-container-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  label{
+    font-size: 24px;
+    margin: 5px;
+    margin-top: 1em;
+    color: #484749;
+  }
+  label b  {
+    font-size: 24px;
+    margin: 5px;
+    color: #484749;
+  }
+
+  .header-form {
+    font-size: 24px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .content-form {
+    float: left;
+    label b {
+      font-size: 16px;
+      margin-top: 0.2em;
+      color: #484749;
+      float: left;
+    }
+
+    // .image {
+    //   width: 21em;
+    //   img {
+    //     width: 100%;
+    //     height: 100%;
+    //   }
+    // }
+
+    .form-form {
+      margin-top: 1.2em;
+      margin-bottom: 2em;
+      // border: 2px solid red;
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      
+
+      .form-group-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+        label {
+          font-size: 16px;
+        }
+        label .note {
+          font-size: 20px;
+          color: red;
+        }
+        .application-form{
+          margin-top: 6px;
+          min-width: 30em;
+          height: 37px;
+          padding: 0px 10px;
+          font-size: 16px;
+          font-family: "Open Sans", sans-serif;
+          background-color: #dfc5f1;
+          border: 0;
+          border-radius: 4px;
+          margin-bottom: 31px;
+          transition: all 250ms ease-in-out;
+          &:hover {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 14px 0.3px #4B0082;
+          }
+          &:focus {
+            outline: none;
+            transition: all 510ms ease-in-out;
+            box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+          }
+        }
+        .application-form-cv{
+          margin-top: 6px;
+          min-width: 3em;
+          height:em;
+          padding: 0px 10px;
+          font-size: 16px;
+          font-family: "Open Sans", sans-serif;
+          background-color: #dfc5f1;
+          border: 0;
+          border-radius: 4px;
+          margin-bottom: 31px;
+          transition: all 250ms ease-in-out;
+          ::-webkit-file-upload-button{
+            background-color: rgba(255, 155, 62, 0.74);
+            padding: 5px;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+          }
+          &:hover {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 14px 0.3px #4B0082;
+          }
+          &:focus {
+            outline: none;
+            transition: all 510ms ease-in-out;
+            box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74);
+          }
+        }
+      }
+    }
+// form editor for form-full-name 
+    .form-group-form-full-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      label {
+        font-size: 16px;
+      }
+      label .note {
+        font-size: 20px;
+        color: red;
+      }
+      .application-form{
+        margin-top: 6px;
+        margin-right: 40px;
+        min-width: 25em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+    }
+
+    //employment and school form"es"
+    .form-group-form-es{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      label {
+        font-size: 16px;
+      }
+      label .note {
+        font-size: 20px;
+        color: red;
+      }
+      .application-form-es{
+        margin-top: 6px;
+        margin-right: 40px;
+        min-width: 25em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+
+      .application-form-es-down{
+        margin-top: 2.9em;
+        margin-right: 40px;
+        min-width: 25em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+    }
+
+    // form editor for Address contact "ac"
+    .form-group-form-ac {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      label {
+        font-size: 16px;
+      }
+      label .note {
+        font-size: 20px;
+        color: red;
+      }
+      .application-form{
+        margin-top: 6px;
+        margin-right: 40px;
+        min-width: 25em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+    }
+
+    .form-group-form-ac-min {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      label {
+        font-size: 16px;
+      }
+      label .note {
+        font-size: 20px;
+        color: red;
+      }
+      .application-form{
+        margin-top: 6px;
+        margin-right: 4em;
+        min-width: 14.4em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+    }
+
+    .form-group-form-ac-min-ac {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      label {
+        font-size: 16px;
+      }
+      label .note {
+        font-size: 20px;
+        color: red;
+      }
+      .application-form{
+        margin-top: 6px;
+        margin-right: 2em;
+        min-width: 19em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+      .application-form-ac{
+        margin-top: 6px;
+        margin-right: 14.5em;
+        min-width: 19em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+      .application-form-ac-email{
+        margin-top: 6px;
+        margin-right: 14.5em;
+        min-width: 19em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+    }
+
+
+
+
+    // form editor for date
+    .form-group-form-full-name-date {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      label {
+        font-size: 16px;
+      }
+      label .note {
+        font-size: 20px;
+        color: red;
+      }
+      .application-form{
+        margin-top: 6px;
+        margin-right: 4.6em;
+        min-width: 10em;
+        height: 37px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #dfc5f1;
+        border: 0;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        transition: all 250ms ease-in-out;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 0px 14px 0.3px #4B0082;
+        }
+        &:focus {
+          outline: none;
+          transition: all 510ms ease-in-out;
+          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 3em;
+  }
+  .note {
+    margin-top:1em ;
+    font-size: 20px;
+    color: rgb(255, 0, 98);
+    font-family: "Open Sans", sans-serif;;
+    &:hover {
+      color: #ff0095;
+      font-style: italic;
+    }
+  }
+}
+
+::-webkit-file-upload-button{
+  background-color: rgba(255, 155, 62, 0.74);
+  padding: 5px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+//====================================================================================================
+//  portal directory Scss
+//====================================================================================================
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  font-family: "Open Sans" sans-serif;
+  background-color: #4B0082;
+  border: 0px;
+  box-shadow: 0px 0px 7px 0.8px rgb(255, 123, 0)
+}
+
+.logo {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.nav-links li {
+  list-style: none;
+  
+}
+
+.nav-links li :hover{
+  color: rgb(255, 123, 0);
+}
+
+.nav-links a {
+  color: #cfcfcf;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline;
+  width: fit-content;
+
+}
+
+.nav-links p {
+  color: #d1cccca8;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline;
+  width: fit-content;
+
+}
+
+.buggerLines {
+  display: none;
+  cursor: pointer;
+}
+
+.buggerLines div {
+  width: 25px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-links{
+    width: 60%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+  
+  .nav-links{
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: #4B0082;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    transform: translateX(100%);
+    transition: transform 0.7s ease-in-out;
+
+  }
+  .nav-links .turnOff {
+    display: none;
+  }
+
+  .nav-links li {
+    opacity: 0px;
+
+  }
+
+  .buggerLines{
+    display: block;
+    background-color: rgb(255, 123, 0);
+    color: #ffffff;
+    border: 0px;
+    border-radius: 3px;
+  }
+
+}
+
+.nav-active {
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFrame {
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1px;
+    transform: translateX(0px);
+  }
+}
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px,6px);
+}
+
+.toggle .line2{
+  opacity: 0;
+}
+
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px,-6px);
 }

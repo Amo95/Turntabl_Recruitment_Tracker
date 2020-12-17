@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="applicantdata")
-public class ApplicantData {
+public class ApplicantDatamodel {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -43,12 +43,12 @@ public class ApplicantData {
 
     private String CvDirectory;
 
-    public ApplicantData() {
+    public ApplicantDatamodel() {
     }
 
-    public ApplicantData(String id, String email, String first_name, String middle_name, String last_name, String nickname, LocalDate dob, String gender, String university,
-                         String year_of_graduation, String cvFiletype, String cvFilename,
-                         String CvDirectory) {
+    public ApplicantDatamodel(String id, String email, String first_name, String middle_name, String last_name, String nickname, LocalDate dob, String gender, String university,
+                              String year_of_graduation, String cvFiletype, String cvFilename,
+                              String CvDirectory) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;

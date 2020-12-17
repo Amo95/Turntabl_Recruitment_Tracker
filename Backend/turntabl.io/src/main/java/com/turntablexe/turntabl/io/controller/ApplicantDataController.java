@@ -2,11 +2,10 @@ package com.turntablexe.turntabl.io.controller;
 
 
 import com.turntablexe.turntabl.io.exception.ResourceNotFoundException;
-import com.turntablexe.turntabl.io.model.ApplicantData;
+import com.turntablexe.turntabl.io.model.ApplicantDatamodel;
 import com.turntablexe.turntabl.io.repository.ApplicationDataRepository;
 import com.turntablexe.turntabl.io.response.FileUploadResponse;
 import com.turntablexe.turntabl.io.service.FileUploadService;
-import com.turntablexe.turntabl.io.service.FileUploadServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -18,8 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,46 +33,46 @@ public class ApplicantDataController {
     private FileUploadService fileUploadService;
 
     @GetMapping("/applicants")
-    public List<ApplicantData> getAllApplicant() {
+    public List<ApplicantDatamodel> getAllApplicant() {
         return applicationDataRepository.findAll();
     }
 
     @GetMapping("/applicants/{id}")
-    public ResponseEntity<ApplicantData> getApplicantById(@PathVariable(value = "id") String applicantId)
+    public ResponseEntity<ApplicantDatamodel> getApplicantById(@PathVariable(value = "id") String applicantId)
             throws ResourceNotFoundException {
-        ApplicantData applicantData = applicationDataRepository.findById(applicantId)
+        ApplicantDatamodel applicantDatamodel = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicants not found for this id :: " + applicantId));
-        return ResponseEntity.ok().body(applicantData);
+        return ResponseEntity.ok().body(applicantDatamodel);
     }
 
     @PostMapping("/applicants")
-    public ApplicantData createApplicant(@Valid @RequestBody ApplicantData applicant) {
+    public ApplicantDatamodel createApplicant(@Valid @RequestBody ApplicantDatamodel applicant) {
         return applicationDataRepository.save(applicant);
     }
 
     @PutMapping("/applicants/{id}")
-    public ResponseEntity<ApplicantData> updateApplicant(@PathVariable(value = "id") String applicantId,
-                                                         @Valid @RequestBody ApplicantData applicantDetails) throws ResourceNotFoundException {
-        ApplicantData applicantData = applicationDataRepository.findById(applicantId)
+    public ResponseEntity<ApplicantDatamodel> updateApplicant(@PathVariable(value = "id") String applicantId,
+                                                              @Valid @RequestBody ApplicantDatamodel applicantDetails) throws ResourceNotFoundException {
+        ApplicantDatamodel applicantDatamodel = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
-        applicantData.setFirst_name(applicantDetails.getFirst_name());
-        applicantData.setLast_name(applicantDetails.getLast_name());
-        applicantData.setMiddle_name(applicantDetails.getMiddle_name());
-        applicantData.setNickname(applicantDetails.getNickname());
-        applicantData.setDob(applicantDetails.getDob());
-        applicantData.setEmail((applicantDetails.getEmail()));
-        applicantData.setGender(applicantDetails.getGender());
-        applicantData.setUniversity(applicantDetails.getUniversity());
-        applicantData.setYear_of_graduation(applicantDetails.getYear_of_graduation());
-        final ApplicantData updatedApplicant = applicationDataRepository.save(applicantData);
+        applicantDatamodel.setFirst_name(applicantDetails.getFirst_name());
+        applicantDatamodel.setLast_name(applicantDetails.getLast_name());
+        applicantDatamodel.setMiddle_name(applicantDetails.getMiddle_name());
+        applicantDatamodel.setNickname(applicantDetails.getNickname());
+        applicantDatamodel.setDob(applicantDetails.getDob());
+        applicantDatamodel.setEmail((applicantDetails.getEmail()));
+        applicantDatamodel.setGender(applicantDetails.getGender());
+        applicantDatamodel.setUniversity(applicantDetails.getUniversity());
+        applicantDatamodel.setYear_of_graduation(applicantDetails.getYear_of_graduation());
+        final ApplicantDatamodel updatedApplicant = applicationDataRepository.save(applicantDatamodel);
         return ResponseEntity.ok(updatedApplicant);
     }
 
     @DeleteMapping("/applicants/{id}")
     public Map<String, Boolean> deleteApplicants(@PathVariable(value = "id") String applicantId)
             throws ResourceNotFoundException {
-        ApplicantData applicant = applicationDataRepository.findById(applicantId)
+        ApplicantDatamodel applicant = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
         applicationDataRepository.delete(applicant);
@@ -114,36 +111,36 @@ public class ApplicantDataController {
 
     @GetMapping("/applicants/download/{id}")
     public ResponseEntity<Resource> downloadCV(@PathVariable String id){
-        ApplicantData applicantDataToRet = fileUploadService.downloadCV(id);
+        ApplicantDatamodel applicantDatamodelToRet = fileUploadService.downloadCV(id);
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(applicantDataToRet.getCvFiletype()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDataToRet.getCvFilename())
-                .body(new ByteArrayResource(applicantDataToRet.getCv()));
+                .contentType(MediaType.parseMediaType(applicantDatamodelToRet.getCvFiletype()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDatamodelToRet.getCvFilename())
+                .body(new ByteArrayResource(applicantDatamodelToRet.getCv()));
     }
 
     @PutMapping("/applicants/upload/db/{id}")
     public FileUploadResponse uploadDatabase(@PathVariable(value = "id") String applicantId, @RequestParam("file") MultipartFile file) throws ResourceNotFoundException {
-        ApplicantData applicantData = applicationDataRepository.findById(applicantId)
+        ApplicantDatamodel applicantDatamodel = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
         FileUploadResponse response = new FileUploadResponse();
-        ApplicantData applicantData1 = fileUploadService.uploadToDB(file, applicantId);
+        ApplicantDatamodel applicantDatamodel1 = fileUploadService.uploadToDB(file, applicantId);
 
-        if((applicantData != null && file.getContentType().equals("application/pdf"))) {
+        if((applicantDatamodel != null && file.getContentType().equals("application/pdf"))) {
 
-            applicantData.setCv(applicantData1.getCv());
-            applicantData.setCvDirectory(applicantData1.getCvDirectory());
-            applicantData.setCvFiletype(applicantData1.getCvFiletype());
-            applicantData.setCvFilename(applicantData1.getCvFilename());
-            final ApplicantData updatedDatabase = applicationDataRepository.save(applicantData);
+            applicantDatamodel.setCv(applicantDatamodel1.getCv());
+            applicantDatamodel.setCvDirectory(applicantDatamodel1.getCvDirectory());
+            applicantDatamodel.setCvFiletype(applicantDatamodel1.getCvFiletype());
+            applicantDatamodel.setCvFilename(applicantDatamodel1.getCvFilename());
+            final ApplicantDatamodel updatedDatabase = applicationDataRepository.save(applicantDatamodel);
 //          response header status
             String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/api/turntablexe/applicants/download/db")
-                    .path(applicantData.getId())
+                    .path(applicantDatamodel.getId())
                     .toUriString();
             response.setDownloadUri(downloadUri);
-            response.setId(applicantData.getId());
-            response.setFileType(applicantData.getCvFiletype());
+            response.setId(applicantDatamodel.getId());
+            response.setFileType(applicantDatamodel.getCvFiletype());
             response.setUploadStatus(true);
             response.setMessage("Updated successfully");
             return response;

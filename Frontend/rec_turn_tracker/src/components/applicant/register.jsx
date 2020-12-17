@@ -1,12 +1,34 @@
 import React from "react";
 import loginImg from "../../signup.svg";
+import { register } from '../../service/actions/actions';
+import { connect } from 'react-redux'
+import { message } from 'antd';
 
-export class Register extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  state = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  }
+
+  onchangeHandler = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  submitHandler = (event) => {
+    const { email, password, confirmPassword } = this.state
+    this.props.dispatch(register(email, password, confirmPassword))
+    
+    this.props.status ? message.success(this.props.message) : message.error(this.props.message)
+  }
+  
   render() {
+    const { email, password, confirmPassword } = this.state
+
     return (
       <div className="base-container" ref={this.props.containerRef}>
         <div className="header">Register</div>
@@ -17,25 +39,32 @@ export class Register extends React.Component {
           <div className="form">
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" placeholder="Enter Email" required/>
+              <input type="email" name="email" placeholder="Enter Email" value={email} onChange={this.onchangeHandler} required />
             </div>
             <div className="form-group">
               <label htmlFor="email">Password</label>
-              <input type="password" name="password" placeholder="Enter Password" required/>
+              <input type="password" name="password" placeholder="Enter Password" value={password} onChange={this.onchangeHandler} required />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password Confirmation</label>
-              <input type="password" name="confirmPassword" placeholder="Confirm Password" required/>
+              <input type="password" name="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={this.onchangeHandler} required />
             </div>
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="button">
+          <button type="submit" className="button" onClick={this.submitHandler}>
             Register
-            
           </button>
         </div>
+
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  status: state.Register.status,
+  message: state.Register.message
+});
+
+export default connect(mapStateToProps)(Register)

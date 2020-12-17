@@ -1,7 +1,7 @@
 package com.turntablexe.turntabl.io.service;
 
 import com.turntablexe.turntabl.io.exception.ResourceNotFoundException;
-import com.turntablexe.turntabl.io.model.ApplicantData;
+import com.turntablexe.turntabl.io.model.ApplicantDatamodel;
 import com.turntablexe.turntabl.io.repository.ApplicationDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,16 +34,16 @@ public class FileUploadServiceImpl implements FileUploadService {
     }
 
     @Override
-    public ApplicantData uploadToDB(MultipartFile file, String id) {
+    public ApplicantDatamodel uploadToDB(MultipartFile file, String id) {
         try {
-            ApplicantData applicantData = applicationDataRepository.findById(id)
+            ApplicantDatamodel applicantDatamodel = applicationDataRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + id));
-            applicantData.setCvDirectory(Paths.get(fileUploadPath + file.getOriginalFilename()).toString());
-            applicantData.setCv(file.getBytes());
-            applicantData.setCvFilename(file.getOriginalFilename());
-            applicantData.setCvFiletype(file.getContentType());
-            ApplicantData applicantData1ToRet = applicationDataRepository.save(applicantData);
-            return applicantData1ToRet;
+            applicantDatamodel.setCvDirectory(Paths.get(fileUploadPath + file.getOriginalFilename()).toString());
+            applicantDatamodel.setCv(file.getBytes());
+            applicantDatamodel.setCvFilename(file.getOriginalFilename());
+            applicantDatamodel.setCvFiletype(file.getContentType());
+            ApplicantDatamodel applicantDatamodel1ToRet = applicationDataRepository.save(applicantDatamodel);
+            return applicantDatamodel1ToRet;
 
         } catch (IOException | ResourceNotFoundException e) {
             e.printStackTrace();
@@ -52,8 +52,8 @@ public class FileUploadServiceImpl implements FileUploadService {
     }
 
     @Override
-    public ApplicantData downloadCV(String applicantId) {
-        ApplicantData uploadedFiletoRet = applicationDataRepository.getOne(applicantId);
+    public ApplicantDatamodel downloadCV(String applicantId) {
+        ApplicantDatamodel uploadedFiletoRet = applicationDataRepository.getOne(applicantId);
         return uploadedFiletoRet;
     }
 }

@@ -1,13 +1,15 @@
-import React,{Component} from 'react'
-import { Login, Register } from "./index";
+import React, { Component } from 'react'
+import Register from "./register";
+import Login from './login';
+import "./style.scss";
 // import backImg from "./background";
 
 
-class Togle extends Component{
+class Togle extends Component {
 
-    state = {
-        isLogginActive: true
-      };
+  state = {
+    isLogginActive: true
+  };
 
 
   componentDidMount() {
@@ -28,51 +30,49 @@ class Togle extends Component{
     this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
   }
 
-    render(){
+  render() {
 
-        const { isLogginActive } = this.state;
+    const { isLogginActive } = this.state;
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
     return (
-      <div className="banner-img">
-        <div className="banner-relation">
-          <div className="App">
-            <div className="login">
-              <div className="container" ref={ref => (this.container = ref)}>
-                {isLogginActive && (
-                  <Login containerRef={ref => (this.current = ref)} />
-                )}
-                {!isLogginActive && (
-                  <Register containerRef={ref => (this.current = ref)} />
-                )}
-              </div>
-              <RightSide
-                current={current}
-                currentActive={currentActive}
-                containerRef={ref => (this.rightSide = ref)}
-                onClick={this.changeState.bind(this)}
-              />
+      <div className="banner-Img">
+        <div className="App">
+
+          <div className="login">
+            <div className="container" ref={ref => (this.container = ref)}>
+              {isLogginActive && (
+                <Login containerRef={ref => (this.current = ref)} />
+              )}
+              {!isLogginActive && (
+                <Register containerRef={ref => (this.current = ref)} />
+              )}
             </div>
+            <RightSide
+              current={current}
+              currentActive={currentActive}
+              containerRef={ref => (this.rightSide = ref)}
+              onClick={this.changeState.bind(this)}
+            />
           </div>
         </div>
-      </div>);
-
-    }
+      </div>)
+  }
 }
 
 const RightSide = props => {
-    return (
-      <div
-        className="right-side"
-        ref={props.containerRef}
-        onClick={props.onClick}
-      >
-        <div className="inner-container">
-          <div className="text">{props.current}</div>
-        </div>
+  return (
+    <div
+      className="right-side"
+      ref={props.containerRef}
+      onClick={props.onClick}
+    >
+      <div className="inner-container">
+        <div className="text">{props.current}</div>
       </div>
-    );
-  };
-  
+    </div>
+  );
+};
+
 
 export default Togle;
