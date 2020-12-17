@@ -77,6 +77,10 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
+    public boolean emailExists(final String email){
+        return registrationRepository.findByEmail(email).isPresent();
+    }
+
     public Register fetchUserByPassword(String password){
         return registrationRepository.findByPassword(password);
     }

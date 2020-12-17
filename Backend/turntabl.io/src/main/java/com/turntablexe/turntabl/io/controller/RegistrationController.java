@@ -1,5 +1,7 @@
 package com.turntablexe.turntabl.io.controller;
 
+import com.turntablexe.turntabl.io.exception.UserAlreadyExistException;
+import com.turntablexe.turntabl.io.exception.WrongPasswordException;
 import com.turntablexe.turntabl.io.model.Register;
 import com.turntablexe.turntabl.io.model.VerificationToken;
 import com.turntablexe.turntabl.io.service.UserService;
@@ -26,22 +28,25 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public void registerUser(@RequestBody Register register) throws Exception {
-        String tempEmail = register.getEmail();
-        final String encryptedPassword = bCryptPasswordEncoder.encode(register.getPassword());
-        register.setPassword(encryptedPassword);
 
-//        if (tempEmail != null && !"".equals(tempEmail)){
-//            Optional<User> oldEmail =  registrationService.fetchUserByEmail(tempEmail);
-//
-//            if (oldEmail != null){
-//                throw new Exception("User already exist");
-//            }
-//        }
-        userService.saveUser(register);
+        if (register.getPassword().equals(register.getConfirmPassword())){
+            String tempEmail = register.getEmail();
+            final String encryptedPassword = bCryptPasswordEncoder.encode(register.getPassword());
+            register.setPassword(encryptedPassword);
 
-        final VerificationToken verificationToken = new VerificationToken(register);
-        verificationTokenService.saveVerificationToken(verificationToken);
-        userService.sendVerificationEmail(register.getEmail(), verificationToken.getVerificationToken());
+            if (userService.emailExists(tempEmail)){
+                throw new UserAlreadyExistException("These email "+tempEmail+" already exits");
+            }
+
+            userService.saveUser(register);
+
+            final VerificationToken verificationToken = new VerificationToken(register);
+            verificationTokenService.saveVerificationToken(verificationToken);
+            userService.sendVerificationEmail(register.getEmail(), verificationToken.getVerificationToken());
+        }else {
+            throw new WrongPasswordException("Password don't match");
+        }
+
     }
 
     @GetMapping("/register/confirm")
