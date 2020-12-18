@@ -12,6 +12,5 @@ import java.util.Optional;
 @Repository
 public interface RegistrationRepository extends JpaRepository<Register, Integer> {
     Optional<Register> findByEmail(String email);
-    Register findByPassword(String password);
-    Register findUserByEmailAndPassword(String email, String password);
+    Register getByEmail(String email);
 }

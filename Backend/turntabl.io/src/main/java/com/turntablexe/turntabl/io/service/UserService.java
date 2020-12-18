@@ -1,7 +1,9 @@
 package com.turntablexe.turntabl.io.service;
 
+import com.turntablexe.turntabl.io.model.PasswordResetToken;
 import com.turntablexe.turntabl.io.model.Register;
 import com.turntablexe.turntabl.io.model.VerificationToken;
+import com.turntablexe.turntabl.io.repository.PasswordResetTokenRepository;
 import com.turntablexe.turntabl.io.repository.RegistrationRepository;
 import com.turntablexe.turntabl.io.repository.VerificationTokenRepository;
 import lombok.AllArgsConstructor;
@@ -10,9 +12,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
 import java.util.Optional;
 
@@ -26,6 +30,12 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private VerificationTokenRepository verificationTokenRepository;
+
+    @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     private final EmailSenderService emailSenderService;
 
@@ -53,6 +63,19 @@ public class UserService implements UserDetailsService {
         emailSenderService.sendEmail(mailMessage);
     }
 
+    public void resetPasswordMailToken(String userMail, String verificationToken){
+        final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userMail);
+        mailMessage.setSubject("Reset Password!");
+        mailMessage.setFrom("<MAIL>");
+        mailMessage.setText(
+                "Click the link below to reset your password." + "http://localhost:8081/chagePassword?token="
+                        + verificationToken);
+
+        emailSenderService.sendEmail(mailMessage);
+    }
+
+
     public void confirmUser(VerificationToken token){
         final Register register = token.getRegister();
         register.setEnabled(true);
@@ -68,6 +91,10 @@ public class UserService implements UserDetailsService {
        return registrationRepository.findByEmail(email);
     }
 
+    public  Register findUserByEmail(String email){
+        return registrationRepository.getByEmail(email);
+    }
+
     public Register getUser(final String verificationToken){
         final VerificationToken token = verificationTokenRepository.getByVerificationToken(verificationToken);
 
@@ -81,8 +108,23 @@ public class UserService implements UserDetailsService {
         return registrationRepository.findByEmail(email).isPresent();
     }
 
-    public Register fetchUserByPassword(String password){
-        return registrationRepository.findByPassword(password);
+
+    public void changeUserPassword(final Register register, final String password){
+        register.setPassword(passwordEncoder.encode(password));
+        registrationRepository.save(register);
+    }
+
+    public boolean checkIfValidOldPassword(final Register register, final String oldPassword){
+        return passwordEncoder.matches(oldPassword, register.getPassword());
+    }
+
+    public void createPasswordResetTokenForUser(final Register register, String token){
+        final PasswordResetToken myToken = new PasswordResetToken(token, register);
+        passwordResetTokenRepository.save(myToken);
+    }
+
+    public Optional<Register> getRegisterByPasswordResetToken(final String token){
+        return Optional.ofNullable(passwordResetTokenRepository.findByToken(token).getRegister());
     }
 
     @Override
