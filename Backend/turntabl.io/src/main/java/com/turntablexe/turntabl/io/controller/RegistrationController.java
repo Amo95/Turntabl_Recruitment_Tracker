@@ -113,8 +113,6 @@ public class RegistrationController {
 
     @PostMapping("/user/updatePassword")
     public String changeUserPassword(@RequestBody ResetPassword password, @RequestParam("email") String userMAil, @RequestParam("token") String  token){
-//        final Register register = userService.findUserByEmail(userMAil);
-
         final String result = passwordSecurityService.validatePasswordResetToken(token);
 
         if (result != null){
@@ -133,11 +131,6 @@ public class RegistrationController {
         }
         return "Invalid token/email";
 
-//        if (!userService.checkIfValidOldPassword(register, password.getOldPassword())){
-//            throw new InvalidOldPasswordException("Old password don't match");
-//        }
-//        userService.changeUserPassword(register, password.getNewPassword());
-//        return "Password successfully changed";
     }
 
 
