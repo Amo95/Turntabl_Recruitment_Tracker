@@ -37,6 +37,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    private HttpServletRequest request;
+
     private final EmailSenderService emailSenderService;
 
     public void sendVerificationEmail(String userMail, String verificationToken){
@@ -45,8 +47,11 @@ public class UserService implements UserDetailsService {
         mailMessage.setSubject("Mail Confirmation Link!");
         mailMessage.setFrom("<MAIL>");
         mailMessage.setText(
-                "Thank you for registering. Please click link the below to activate your account." + "http://localhost:8081/register/confirm?token="
-                        + verificationToken);
+                "Thank you for registering. Please click link the below to activate your account." +
+                        "http://"+request.getServerName()+":"+
+                        request.getServerPort()+"/register/confirm?token="
+                        + verificationToken
+        );
 
         emailSenderService.sendEmail(mailMessage);
     }
@@ -57,20 +62,27 @@ public class UserService implements UserDetailsService {
         mailMessage.setSubject("Resend Verification Mail!");
         mailMessage.setFrom("<MAIL>");
         mailMessage.setText(
-                "Thank you for registering. Please click link the below to activate your account." + "http://localhost:8081/register/confirm?token="
-                        + verificationToken);
+                "Thank you for registering. Please click link the below to activate your account." +
+                        "http://"+request.getServerName()+":"+
+                        request.getServerPort()+"/register/confirm?token="
+                        + verificationToken
+        );
 
         emailSenderService.sendEmail(mailMessage);
     }
 
     public void resetPasswordMailToken(String userMail, String verificationToken){
+
         final SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(userMail);
         mailMessage.setSubject("Reset Password!");
         mailMessage.setFrom("<MAIL>");
         mailMessage.setText(
-                "Click the link below to reset your password." + "http://localhost:8081/chagePassword?token="
-                        + verificationToken);
+
+                "Click the link below to reset your password." + "http://"+request.getServerName()+":"+
+                        request.getServerPort()+"/chagePassword?token="
+                        + verificationToken
+        );
 
         emailSenderService.sendEmail(mailMessage);
     }
