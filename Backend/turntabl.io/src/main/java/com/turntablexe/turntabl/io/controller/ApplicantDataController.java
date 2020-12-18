@@ -135,7 +135,7 @@ public class ApplicantDataController {
             final ApplicantDatamodel updatedDatabase = applicationDataRepository.save(applicantDatamodel);
 //          response header status
             String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/turntablexe/applicants/download/db")
+                    .path("/api/turntablexe/applicants/download/")
                     .path(applicantDatamodel.getId())
                     .toUriString();
             response.setDownloadUri(downloadUri);
