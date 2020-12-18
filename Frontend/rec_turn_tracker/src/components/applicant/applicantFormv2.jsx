@@ -99,6 +99,7 @@ class FirstStep extends React.Component {
               <option>--Select Gender--</option>
               <option>Male</option>
               <option>Female</option>
+              <option>Others</option>
             </Input>
           </FormGroup>
         </Col>
