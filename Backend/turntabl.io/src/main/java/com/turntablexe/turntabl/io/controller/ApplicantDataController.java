@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:3006"})
 @RestController
 @RequestMapping("/api/turntablexe/")
 public class ApplicantDataController {
@@ -46,8 +47,9 @@ public class ApplicantDataController {
     }
 
     @PostMapping("/applicants")
-    public ApplicantDatamodel createApplicant(@Valid @RequestBody ApplicantDatamodel applicant) {
-        return applicationDataRepository.save(applicant);
+    public HttpStatus createApplicant(@Valid @RequestBody ApplicantDatamodel applicant) {
+        applicationDataRepository.save(applicant);
+        return  HttpStatus.valueOf(200);
     }
 
     @PutMapping("/applicants/{id}")
@@ -135,7 +137,7 @@ public class ApplicantDataController {
             final ApplicantDatamodel updatedDatabase = applicationDataRepository.save(applicantDatamodel);
 //          response header status
             String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/turntablexe/applicants/download/db")
+                    .path("/api/turntablexe/applicants/download/")
                     .path(applicantDatamodel.getId())
                     .toUriString();
             response.setDownloadUri(downloadUri);

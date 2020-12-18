@@ -24,11 +24,19 @@ public class ApplicantDatamodel {
     private String middle_name;
 
     private String last_name;
-
+    private String address1;
+    private String address2;
     private String nickname;
-
-    private LocalDate dob;
-
+    private String zip_code;
+    private String phone_number;
+    private String whatsApp_number;
+    private boolean nss_status;
+    private String nss_number;
+    private String ssnit_number;
+    private String referral;
+    private String dob;
+    private String region;
+    private String city;
     private String gender;
 
     private String university;
@@ -46,23 +54,6 @@ public class ApplicantDatamodel {
     public ApplicantDatamodel() {
     }
 
-    public ApplicantDatamodel(String id, String email, String first_name, String middle_name, String last_name, String nickname, LocalDate dob, String gender, String university,
-                              String year_of_graduation, String cvFiletype, String cvFilename,
-                              String CvDirectory) {
-        this.id = id;
-        this.email = email;
-        this.first_name = first_name;
-        this.middle_name = middle_name;
-        this.last_name = last_name;
-        this.nickname = nickname;
-        this.dob = dob;
-        this.gender = gender;
-        this.university = university;
-        this.year_of_graduation = year_of_graduation;
-        this.cvFiletype = cvFiletype;
-        this.cvFilename = cvFilename;
-        this.CvDirectory = CvDirectory;
-    }
 
     public String getId() {
         return id;
@@ -118,11 +109,11 @@ public class ApplicantDatamodel {
     }
 
     @Column(name = "dob")
-    public LocalDate getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -197,22 +188,104 @@ public class ApplicantDatamodel {
         return Paths.get(CvDirectory, cvFilename);
     }
 
-//    @Override
-//    public String toString() {
-//        return "ApplicantData{" +
-//                "id=" + id +
-//                ", email='" + email + '\'' +
-//                ", first_name='" + first_name + '\'' +
-//                ", middle_name='" + middle_name + '\'' +
-//                ", last_name='" + last_name + '\'' +
-//                ", nickname='" + nickname + '\'' +
-//                ", dob=" + dob +
-//                ", gender='" + gender + '\'' +
-//                ", university='" + university + '\'' +
-//                ", year_of_graduation='" + year_of_graduation + '\'' +
-//                ", cvFilename='" + cvFilename + '\'' +
-//                ", cvFiletype='" + cvFiletype + '\'' +
-//                ", cv=" + Arrays.toString(cv) +
-//                '}';
-//    }
+    @Column(name = "getZip_code")
+    public String getZip_code() {
+        return zip_code;
+    }
+
+
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    @Column(name = "getPhone_number")
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    @Column(name = "whatsapp_number")
+    public String getWhatsApp_number() {
+        return whatsApp_number;
+    }
+
+    public void setWhatsApp_number(String whatsApp_number) {
+        this.whatsApp_number = whatsApp_number;
+    }
+
+    @Column(name = "isNss_status")
+    public boolean isNss_status() {
+        return nss_status;
+    }
+
+
+    public void setNss_status(boolean nss_status) {
+        this.nss_status = nss_status;
+    }
+
+    @Column(name = "getNss_numbe")
+    public String getNss_number() {
+        return nss_number;
+    }
+
+    public void setNss_number(String nss_number) {
+        this.nss_number = nss_number;
+    }
+
+    @Column(name = "ssnit_number")
+    public String getSsnit_number() {
+        return ssnit_number;
+    }
+
+    public void setSsnit_number(String ssnit_number) {
+        this.ssnit_number = ssnit_number;
+    }
+
+    @Column(name = "referral")
+    public String getReferral() {
+        return referral;
+    }
+
+
+    public void setReferral(String referral) {
+        this.referral = referral;
+    }
+
+    @Column(name = "address1")
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    @Column(name = "address2")
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+    @Column(name = "region")
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    @Column(name = "city")
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

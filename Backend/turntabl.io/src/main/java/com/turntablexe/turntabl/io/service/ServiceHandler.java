@@ -1,9 +1,9 @@
 package com.turntablexe.turntabl.io.service;
 
 
-import com.turntablexe.turntabl.io.model.ApplicantData;
+//import com.turntablexe.turntabl.io.model.ApplicantData;
 import com.turntablexe.turntabl.io.model.Register;
-import com.turntablexe.turntabl.io.repository.ApplicantDataRepository;
+//import com.turntablexe.turntabl.io.repository.ApplicantDataRepository;
 import com.turntablexe.turntabl.io.repository.RegisterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +19,8 @@ public class ServiceHandler {
     @Autowired
     RegisterRepository registerRepository;
 
-    @Autowired
-    ApplicantDataRepository applicantDataRepository;
+//    @Autowired
+//    ApplicantDataRepository applicantDataRepository;
 
     public String registerUser(Register register){
         try {
@@ -46,12 +46,12 @@ public class ServiceHandler {
     }
 
 
-    public HttpStatus addApplicationForm(ApplicantData applicantData){
-        applicantDataRepository.save(applicantData);
-        return HttpStatus.valueOf(200);
-    }
-
-    public List<ApplicantData> getAllApplicants(){
-        return applicantDataRepository.findAll();
-    }
+//    public HttpStatus addApplicationForm(ApplicantData applicantData){
+//        applicantDataRepository.save(applicantData);
+//        return HttpStatus.valueOf(200);
+//    }
+//
+//    public List<ApplicantData> getAllApplicants(){
+//        return applicantDataRepository.findAll();
+//    }
 }
