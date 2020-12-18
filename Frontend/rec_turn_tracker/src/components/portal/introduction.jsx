@@ -12,14 +12,14 @@ export class Introduction extends React.Component {
 
     render () {
         return (
-            <div className="body-intro">
-                <div className="pimg1">
+            <div className="body">
+                {/* <div className="pimg1">
                     <div className="ptext">
                         <span className="border">
                             Welcome To Turntabl Recruitement Page
                         </span>
                     </div>
-                </div>
+                </div> */}
                 <section className="section section-light">
                     <h2>Why work with Turntabl?</h2>
                     <p>

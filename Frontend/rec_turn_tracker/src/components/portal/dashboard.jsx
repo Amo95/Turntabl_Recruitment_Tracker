@@ -74,6 +74,14 @@ export class Dashboard extends React.Component {
                     <div className="line3"></div>
                 </button> 
             </nav>
+            <div>
+                <Introduction />
+            </div>
+            
+            <div className = "fallback">
+                <Applicant /> 
+            </div>
+            
 </div>
 
 
