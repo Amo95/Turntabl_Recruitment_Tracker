@@ -2,7 +2,7 @@ import { LOGIN, LOGOUT, REGISTER_SUCCESS, REGISTER_FAIL } from "./actionsConstan
 import axios from 'axios'
 import { message } from 'antd'
 
-const BASE_URL = "http://localhost:9090/api/turntablexe/";
+const BASE_URL = "http://localhost:8080/api/turntablexe/";
 
 const email_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -50,9 +50,9 @@ export const loginUser = (email, password) => (dispatch) => {
             .then(res => {
                 const { id, email, password } = res.data
                 if ((id !== 0 || id !== null) && (email !== null)) {
-                    localStorage.setItem("id", id)
-                    localStorage.setItem("email", email)
-                    localStorage.setItem("password", password)
+                    // localStorage.setItem("id", id)
+                    // localStorage.setItem("email", email)
+                    // localStorage.setItem("password", password)
                     dispatch(login(res.data))
                 }
                 else {
@@ -69,11 +69,14 @@ export const loginUser = (email, password) => (dispatch) => {
 export const register = (email, password) => dispatch => {
     axios.post(BASE_URL + "register", { email: email, password: password })
         .then(res => {
-            if (res.data === "User already exist") {
+            if (res.data.email === "User already exist") {
+
                 message.error("User Already Exist")
                 dispatch(register_fail())
             }
-            else if (res.data === "User created successfull") {
+            else if (res.data !== "") {
+                const { id, email, password } = res.data
+                localStorage.setItem("id", id)
                 message.success("Register Successful Checkout to Login")
                 dispatch(register_succes())
             }
@@ -83,9 +86,9 @@ export const register = (email, password) => dispatch => {
 
 
 
-export const submitApplicantData = (first_name, middle_name, last_name, nickname, dob, gender, university, year_of_graduation, address1, address2, city, region, zip_code, ssnit_number, nss_number, phone_number, whatsApp_number, referral) => {
+export const submitApplicantData = (id, first_name, middle_name, last_name, nickname, dob, gender, university, year_of_graduation, address1, address2, city, region, zip_code, ssnit_number, nss_number, phone_number, whatsApp_number, referral) => {
 
-    axios.post(BASE_URL + "applicants", {
+    axios.put(BASE_URL + `applicants/${id}`, {
         first_name: first_name,
         middle_name: middle_name,
         last_name: last_name,

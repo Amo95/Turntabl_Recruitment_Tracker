@@ -22,13 +22,16 @@ public class ServiceHandler {
 //    @Autowired
 //    ApplicantDataRepository applicantDataRepository;
 
-    public String registerUser(Register register){
+    public Register registerUser(Register register){
+        Register register1 = new Register();
         try {
-            registerRepository.save(register);
+
+            register1 = registerRepository.save(register);
         }catch (Exception ex){
-            return "User already exist";
+            register1 = null;
+            System.out.println(ex);
         }
-    return "User created successfull";
+    return  register1;
     }
 
     public Register loginUser(Register register){
@@ -44,6 +47,7 @@ public class ServiceHandler {
 
           return register1;
     }
+
 
 
 //    public HttpStatus addApplicationForm(ApplicantData applicantData){

@@ -19,37 +19,81 @@ public class ApplicantDatamodel {
 
     private String email;
 
+    @Column(name = "first_name")
     private String first_name;
 
+    @Column(name = "middle_name")
     private String middle_name;
 
+    @Column(name = "last_name")
     private String last_name;
+
+    @Column(name = "address1")
     private String address1;
+
+    @Column(name = "address2")
     private String address2;
+
+    @Column(name = "nickname")
     private String nickname;
+
+    @Column(name = "zip_code")
     private String zip_code;
+
+    @Column(name = "getPhone_number")
     private String phone_number;
+
+    @Column(name = "whatsapp_number")
     private String whatsApp_number;
+
+    @Column(name = "nss_status")
     private boolean nss_status;
+
+    @Column(name = "nss_number")
     private String nss_number;
+
+    @Column(name = "ssnit_number")
     private String ssnit_number;
+
+    @Column(name = "referral")
     private String referral;
+
+
+    @Column(name = "dob")
     private String dob;
+
+    @Column(name = "region")
     private String region;
+
+    @Column(name = "city")
     private String city;
+    @Column(name = "gender")
     private String gender;
 
+    @Column(name = "university")
     private String university;
 
+    @Column(name = "year_of_graduation")
     private String year_of_graduation;
 
+
+    @Column(name = "cvFilename")
     private String cvFilename;
 
+    @Column(name = "cvFileType")
     private String cvFiletype;
 
+    @Column(name = "cv")
     private byte[] cv;
 
+    @Column(name="file_directory", length=100)
     private String CvDirectory;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "register_id", referencedColumnName = "id")
+    private Register register;
+
 
     public ApplicantDatamodel() {
     }
@@ -72,7 +116,7 @@ public class ApplicantDatamodel {
         this.email = email;
     }
 
-    @Column(name = "first_name")
+
     public String getFirst_name() {
         return first_name;
     }
@@ -81,7 +125,7 @@ public class ApplicantDatamodel {
         this.first_name = first_name;
     }
 
-    @Column(name = "middle_name")
+
     public String getMiddle_name() {
         return middle_name;
     }
@@ -90,7 +134,7 @@ public class ApplicantDatamodel {
         this.middle_name = middle_name;
     }
 
-    @Column(name = "last_name")
+
     public String getLast_name() {
         return last_name;
     }
@@ -99,7 +143,7 @@ public class ApplicantDatamodel {
         this.last_name = last_name;
     }
 
-    @Column(name = "nickname")
+
     public String getNickname() {
         return nickname;
     }
@@ -108,7 +152,7 @@ public class ApplicantDatamodel {
         this.nickname = nickname;
     }
 
-    @Column(name = "dob")
+
     public String getDob() {
         return dob;
     }
@@ -117,7 +161,7 @@ public class ApplicantDatamodel {
         this.dob = dob;
     }
 
-    @Column(name = "gender")
+
     public String getGender() {
         return gender;
     }
@@ -126,7 +170,7 @@ public class ApplicantDatamodel {
         this.gender = gender;
     }
 
-    @Column(name = "university")
+
     public String getUniversity() {
         return university;
     }
@@ -135,7 +179,7 @@ public class ApplicantDatamodel {
         this.university = university;
     }
 
-    @Column(name = "year_of_graduation")
+
     public String getYear_of_graduation() {
         return year_of_graduation;
     }
@@ -144,7 +188,7 @@ public class ApplicantDatamodel {
         this.year_of_graduation = year_of_graduation;
     }
 
-    @Column(name = "cvFileType")
+
     public String getCvFiletype() {
         return cvFiletype;
     }
@@ -153,7 +197,7 @@ public class ApplicantDatamodel {
         this.cvFiletype = cv;
     }
 
-    @Column(name = "cv")
+
     public byte[] getCv() {
         return cv;
     }
@@ -162,7 +206,7 @@ public class ApplicantDatamodel {
         this.cv = cv;
     }
 
-    @Column(name = "cvFilename")
+
     public String getCvFilename() {
         return cvFilename;
     }
@@ -171,7 +215,7 @@ public class ApplicantDatamodel {
         this.cvFilename = filename;
     }
 
-    @Column(name="file_directory", length=100)
+
     public String getCvDirectory() {
         return CvDirectory;
     }
@@ -188,7 +232,7 @@ public class ApplicantDatamodel {
         return Paths.get(CvDirectory, cvFilename);
     }
 
-    @Column(name = "getZip_code")
+
     public String getZip_code() {
         return zip_code;
     }
@@ -198,7 +242,7 @@ public class ApplicantDatamodel {
         this.zip_code = zip_code;
     }
 
-    @Column(name = "getPhone_number")
+
     public String getPhone_number() {
         return phone_number;
     }
@@ -207,7 +251,7 @@ public class ApplicantDatamodel {
         this.phone_number = phone_number;
     }
 
-    @Column(name = "whatsapp_number")
+
     public String getWhatsApp_number() {
         return whatsApp_number;
     }
@@ -216,7 +260,7 @@ public class ApplicantDatamodel {
         this.whatsApp_number = whatsApp_number;
     }
 
-    @Column(name = "isNss_status")
+
     public boolean isNss_status() {
         return nss_status;
     }
@@ -226,7 +270,7 @@ public class ApplicantDatamodel {
         this.nss_status = nss_status;
     }
 
-    @Column(name = "getNss_numbe")
+
     public String getNss_number() {
         return nss_number;
     }
@@ -235,7 +279,7 @@ public class ApplicantDatamodel {
         this.nss_number = nss_number;
     }
 
-    @Column(name = "ssnit_number")
+
     public String getSsnit_number() {
         return ssnit_number;
     }
@@ -244,7 +288,7 @@ public class ApplicantDatamodel {
         this.ssnit_number = ssnit_number;
     }
 
-    @Column(name = "referral")
+
     public String getReferral() {
         return referral;
     }
@@ -254,7 +298,7 @@ public class ApplicantDatamodel {
         this.referral = referral;
     }
 
-    @Column(name = "address1")
+
     public String getAddress1() {
         return address1;
     }
@@ -263,7 +307,6 @@ public class ApplicantDatamodel {
         this.address1 = address1;
     }
 
-    @Column(name = "address2")
     public String getAddress2() {
         return address2;
     }
@@ -271,7 +314,7 @@ public class ApplicantDatamodel {
     public void setAddress2(String address2) {
         this.address2 = address2;
     }
-    @Column(name = "region")
+
     public String getRegion() {
         return region;
     }
@@ -280,12 +323,16 @@ public class ApplicantDatamodel {
         this.region = region;
     }
 
-    @Column(name = "city")
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public void assignRegister(Register register){
+        this.register = register;
+        this.register.setApplicantDatamodel(this);
     }
 }

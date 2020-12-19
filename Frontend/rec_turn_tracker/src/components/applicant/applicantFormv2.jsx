@@ -417,7 +417,10 @@ class Applicant extends React.Component {
     const { nss_number, snnit_number, university, year_graduated } = Employment;
     const { recommender } = CV;
 
+    console.log(localStorage.getItem("id"));
+
     submitApplicantData(
+      localStorage.getItem("id"),
       first_name,
       middle_name,
       last_name,
