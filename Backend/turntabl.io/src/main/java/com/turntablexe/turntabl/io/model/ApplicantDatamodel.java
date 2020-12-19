@@ -173,7 +173,7 @@ public class ApplicantDatamodel {
 
     @Column(name = "cvFilename")
     public String getCvFilename() {
-        return String.format("%s, %s - CV", this.first_name, this.last_name);
+        return String.format("%s,%s-CV", this.first_name, this.last_name);
     }
 
     public void setCvFilename(String filename) {
