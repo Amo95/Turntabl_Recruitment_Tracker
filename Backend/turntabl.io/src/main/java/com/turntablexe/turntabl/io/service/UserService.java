@@ -80,8 +80,9 @@ public class UserService implements UserDetailsService {
         mailMessage.setText(
 
                 "Click the link below to reset your password." + "http://"+request.getServerName()+":"+
-                        request.getServerPort()+"/chagePassword?token="
-                        + verificationToken
+                        request.getServerPort()+"/changePassword?token="
+                        + verificationToken +"&"+
+                        "email="+userMail
         );
 
         emailSenderService.sendEmail(mailMessage);

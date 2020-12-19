@@ -1,6 +1,5 @@
 package com.turntablexe.turntabl.io.controller;
 
-import com.turntablexe.turntabl.io.exception.InvalidOldPasswordException;
 import com.turntablexe.turntabl.io.exception.UserAlreadyExistException;
 import com.turntablexe.turntabl.io.exception.WrongPasswordException;
 import com.turntablexe.turntabl.io.model.Register;
