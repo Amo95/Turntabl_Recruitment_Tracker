@@ -1,9 +1,16 @@
 import React from "react";
 // import AppJs from "./app";
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import Applicant from "../applicant/applicantFormv2";
+import Introduction from "./introduction";
 
 export class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {}
+
+    onSubmitHandler = () => {
+        localStorage.clear();
+        return <Redirect to="/" />
     }
 
     navSlide = () => {
@@ -35,35 +42,24 @@ export class Dashboard extends React.Component {
 
     render () {
         return (
+            <div>
 
             <nav>
                 <div className="logo">
                     <h4>turntabl</h4>
                 </div>
 
-                <ul className="nav-links" onClick = {this.navSlide}>
+                <ul className="nav-links" /*onClick = {this.navSlide} */ > 
                     <li> 
                         <p>Hello Jane Doe</p>
-                    </li>
-
-                    <li className="turnOff">
-                        <p>||</p>
                     </li>
 
                     <li>
                         <a href="#"> Applicant Form </a>
                     </li>
 
-                    <li className="turnOff">
-                        <p>|</p>
-                    </li>
-
                     <li>
                         <a href="#"> Tracker </a>
-                    </li>
-
-                    <li className="turnOff">
-                        <p>|</p>
                     </li>
 
                     <li>
@@ -78,11 +74,21 @@ export class Dashboard extends React.Component {
                     <div className="line3"></div>
                 </button> 
             </nav>
+            <div>
+                <Introduction />
+            </div>
+            
+            <div className = "fallback">
+                <Applicant /> 
+            </div>
+            
+</div>
+
+
         );
     }
 
 
 }
 
-
-export default Dashboard;
+export default connect()(Dashboard);

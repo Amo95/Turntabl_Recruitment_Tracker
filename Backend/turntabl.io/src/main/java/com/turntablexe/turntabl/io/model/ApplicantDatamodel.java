@@ -208,7 +208,7 @@ public class ApplicantDatamodel {
 
 
     public String getCvFilename() {
-        return cvFilename;
+        return String.format("%s,%s-CV", this.first_name, this.last_name);
     }
 
     public void setCvFilename(String filename) {

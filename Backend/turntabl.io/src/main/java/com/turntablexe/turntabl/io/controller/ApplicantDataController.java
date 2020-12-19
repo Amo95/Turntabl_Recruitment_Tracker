@@ -121,13 +121,13 @@ public class ApplicantDataController {
 //        return response;
 //    }
 
-    @GetMapping("/applicants/download/{id}")
+    @RequestMapping(value = "/applicants/download/{id}", method = RequestMethod.GET)
     public ResponseEntity<Resource> downloadCV(@PathVariable String id){
-        ApplicantDatamodel applicantDatamodelToRet = fileUploadService.downloadCV(id);
+        ApplicantDatamodel applicantDataModelToRet = fileUploadService.downloadCV(id);
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(applicantDatamodelToRet.getCvFiletype()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDatamodelToRet.getCvFilename())
-                .body(new ByteArrayResource(applicantDatamodelToRet.getCv()));
+                .contentType(MediaType.parseMediaType(applicantDataModelToRet.getCvFiletype()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDataModelToRet.getCvFilename())
+                .body(new ByteArrayResource(applicantDataModelToRet.getCv()));
     }
 
     @PutMapping("/applicants/upload/db/{id}")
