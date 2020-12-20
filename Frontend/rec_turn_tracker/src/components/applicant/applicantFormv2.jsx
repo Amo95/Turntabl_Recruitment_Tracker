@@ -363,7 +363,8 @@ class Applicant extends React.Component {
   }
   render() {
     return (
-      <div className="fallback">
+      <a id ="myform">
+      <div id="form" className="fallback">
       <div className="contain">
               <ReactWizard
                 steps={steps}
@@ -389,6 +390,7 @@ class Applicant extends React.Component {
         </center> */}
       </div>
       </div>
+      </a>
     );
   }
 }
