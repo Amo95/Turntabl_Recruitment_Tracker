@@ -2,7 +2,6 @@
 import React from "react";
 import { connect } from 'react-redux'
 import ReactWizard from "react-bootstrap-wizard";
-import './appv2.css'
 import {
   Container,
   Row,
@@ -12,7 +11,7 @@ import {
   Label
 } from "reactstrap";
 
-import "./applyv2.css"
+
 import { message } from 'antd';
 
 import { submitApplicantData } from '../../service/actions/actions'
@@ -27,10 +26,8 @@ import SimpleReactValidator from 'simple-react-validator';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Header from "./header";
-import { connect } from 'react-redux';
 
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+
 
 // First component
 class FirstStep extends React.Component {
@@ -80,7 +77,7 @@ class FirstStep extends React.Component {
 
   render() {
     const { first_name, middle_name, last_name, nick_name, date_of_birth, gender } = this.state;
-    return <Container className ="fallcack">
+    return <Container className="fallcack">
       <Row>
 
         <Col xs={12} md={6} className="mr-auto ml-auto">
@@ -88,11 +85,6 @@ class FirstStep extends React.Component {
 
             <Label for="first_name">First Name <span className="text-danger">*</span></Label>
             <Input type="text" name="first_name" id="first_name" placeholder="Enter first name" value={first_name} onChange={this.onChangeHandler} />
-
-            <Label for="first_name">First Name</Label>
-            <Input type="text" name="first_name" id="first_name" placeholder="Enter first name" value={first_name} onChange={this.onChangeHandler} required />
-
-            {this.validator.message('first_name', first_name, 'required|alpha')}
           </FormGroup>
         </Col>
 
@@ -107,9 +99,7 @@ class FirstStep extends React.Component {
 
             <Label for="last_name">Last Name <span className="text-danger">*</span></Label>
             <Input type="text" name="last_name" id="last_name" placeholder="Enter last name" value={last_name} onChange={this.onChangeHandler} />
-            
-            <Label for="last_name">Last Name</Label>
-            <Input type="text" name="last_name" id="last_name" placeholder="Enter last name" value={last_name} onChange={this.onChangeHandler} required />
+
 
           </FormGroup>
         </Col>
@@ -126,8 +116,6 @@ class FirstStep extends React.Component {
             <Label for="last_name">Date of Birth <span className="text-danger">*</span></Label>
             <Input type="date" name="date_of_birth" id="date_of_birth" value={date_of_birth} onChange={this.onChangeHandler} />
 
-            <Label for="last_name">Date of Birth</Label>
-            <Input type="date" name="date_of_birth" id="date_of_birth" value={date_of_birth} onChange={this.onChangeHandler} required />
 
           </FormGroup>
         </Col>
@@ -136,10 +124,6 @@ class FirstStep extends React.Component {
 
             <Label for="exampleSelectMulti">Select Gender <span className="text-danger">*</span></Label>
             <Input type="select" name="gender" id="exampleSelectMulti" value={gender} onChange={this.onChangeHandler}>
-
-            <Label for="exampleSelectMulti">Select Gender</Label>
-            <Input type="select" name="gender" id="exampleSelectMulti" value={gender} onChange={this.onChangeHandler} required>
-
               <option>--Select Gender--</option>
               <option>Male</option>
               <option>Female</option>
@@ -206,9 +190,6 @@ class SecondStep extends React.Component {
             <Label for="address1">Street Address Line 1<span className="text-danger">*</span></Label>
             <Input type="text" name="address1" id="address1" placeholder="Street Address Line 1" value={address1} onChange={this.onChangeHandler} />
 
-            <Label for="address1">Street Address Line 1</Label>
-            <Input type="text" name="address1" id="address1" placeholder="Street Address Line 1" value={address1} onChange={this.onChangeHandler} required />
-
           </FormGroup>
         </Col>
 
@@ -225,10 +206,6 @@ class SecondStep extends React.Component {
 
             <Label for="city">City <span className="text-danger">*</span></Label>
             <Input type="text" name="city" id="city" placeholder=" Enter city" value={city} onChange={this.onChangeHandler} />
-
-            <Label for="city">City</Label>
-            <Input type="text" name="city" id="city" placeholder=" Enter city" value={city} onChange={this.onChangeHandler} required />
-
           </FormGroup>
         </Col>
 
@@ -237,9 +214,6 @@ class SecondStep extends React.Component {
 
             <Label for="address2">Region <span className="text-danger">*</span></Label>
             <Input type="text" name="region" id="region" placeholder=" Enter region" value={region} onChange={this.onChangeHandler} />
-
-            <Label for="address2">Region</Label>
-            <Input type="text" name="region" id="region" placeholder=" Enter region" value={region} onChange={this.onChangeHandler} required />
 
           </FormGroup>
         </Col>
@@ -256,9 +230,6 @@ class SecondStep extends React.Component {
 
             <Label for="phone_number">Phone Number <span className="text-danger">*</span></Label>
             <PhoneInput country='gh' inputStyle={{ width: "100%" }} onChange={this.onChangeHandlerPh1} />
-
-            <Label for="phone_number">Phone Number</Label>
-            <PhoneInput country='gh' inputStyle={{ width: "100%" }} onChange={this.onChangeHandlerPh1} required />
 
           </FormGroup>
         </Col>
@@ -305,7 +276,7 @@ class ThirdStep extends React.Component {
         nss_status: () =>
           <FormGroup>
             <hr />
-            <Input type="text" name="nss_number" placeholder="Enter NSS number" value={this.state.nss_number} onChange={this.onChangeHandler} required/>
+            <Input type="text" name="nss_number" placeholder="Enter NSS number" value={this.state.nss_number} onChange={this.onChangeHandler} required />
           </FormGroup>
       })
     }
@@ -323,7 +294,6 @@ class ThirdStep extends React.Component {
 
             <Input type="text" name="snnit_number" placeholder="Enter SSNIT number" value={this.state.snnit_number} onChange={this.onChangeHandler} />
 
-            <Input type="text" name="ssnit_number" placeholder="Enter SSNIT number" value={this.state.snnit_number} onChange={this.onChangeHandler} required/>
 
           </FormGroup>
       })
@@ -353,9 +323,6 @@ class ThirdStep extends React.Component {
             <Label for="university">University Name <span className="text-danger">*</span></Label>
             <Input type="text" name="university" id="university" placeholder="Enter university name" value={this.state.university} onChange={this.onChangeHandler} />
 
-            <Label for="university">University Name</Label>
-            <Input type="text" name="university" id="university" placeholder="Enter university name" value={this.state.university} onChange={this.onChangeHandler} required />
-
           </FormGroup>
         </Col>
 
@@ -364,9 +331,6 @@ class ThirdStep extends React.Component {
 
             <Label for="year_graduated">Year Graduated <span className="text-danger">*</span></Label>
             <Input type="date" name="year_graduated" id="year_graduated" value={this.state.year_graduated} onChange={this.onChangeHandler} />
-
-            <Label for="year_graduated">Year Graduated</Label>
-            <Input type="date" name="year_graduated" id="year_graduated" value={this.state.year_graduated} onChange={this.onChangeHandler} required />
 
           </FormGroup>
         </Col>
@@ -510,15 +474,15 @@ class Applicant extends React.Component {
   render() {
     return (
       <div className="fallback">
-      <div className="contain">
-              <ReactWizard
-                steps={steps}
-                title="TURNTABL APPLICANT FORM"
-                headerTextCenter
-                validate
-                finishButtonClick={this.finishButtonClick}
-              />
-        {/* <center>
+        <div className="contain">
+          <ReactWizard
+            steps={steps}
+            title="TURNTABL APPLICANT FORM"
+            headerTextCenter
+            validate
+            finishButtonClick={this.finishButtonClick}
+          />
+          {/* <center>
         <div className="mt-3 footer-v2">
           <div className="row text-light">
             <div className="col-md-2"></div>
@@ -533,7 +497,7 @@ class Applicant extends React.Component {
           </div>
         </div>
         </center> */}
-      </div>
+        </div>
       </div>
     );
   }
@@ -541,4 +505,3 @@ class Applicant extends React.Component {
 
 
 export default connect()(Applicant)
-
