@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-    private final String fileUploadPath = "/media/james/444FE6C10F431832/";
+    private final String fileUploadPath = "C:\\Users\\TURNTABL\\Desktop\\Turntabl_Recruitment_Tracker\\Backend\\turntabl.io\\src\\uploads";
 
     @Autowired
     private ApplicationDataRepository applicationDataRepository;

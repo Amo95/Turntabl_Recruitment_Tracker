@@ -1,15 +1,18 @@
 package com.turntablexe.turntabl.io.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Register")
 public class Register {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
     @Column(name = "email",unique = true)
     private String email;
@@ -17,19 +20,22 @@ public class Register {
     @Column(name = "password")
     private String password;
 
+    @OneToOne(mappedBy = "register")
+    private ApplicantDatamodel applicantDatamodel;
+
     public Register(){}
 
-    public Register(int id, String email, String password) {
+    public Register(String id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,5 +53,13 @@ public class Register {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ApplicantDatamodel getApplicantDatamodel() {
+        return applicantDatamodel;
+    }
+
+    public void setApplicantDatamodel(ApplicantDatamodel applicantDatamodel) {
+        this.applicantDatamodel = applicantDatamodel;
     }
 }
