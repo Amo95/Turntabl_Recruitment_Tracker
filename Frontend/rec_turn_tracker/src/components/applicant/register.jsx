@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { message } from 'antd';
 
 class Register extends React.Component {
+  email_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   constructor(props) {
     super(props);
   }
@@ -13,6 +15,7 @@ class Register extends React.Component {
     email: "",
     password: "",
     confirmPassword: "",
+    loader: false
   }
 
   onchangeHandler = (event) => {
@@ -21,16 +24,21 @@ class Register extends React.Component {
 
   submitHandler = (event) => {
     const { email, password, confirmPassword } = this.state
-    this.props.dispatch(register(email, password, confirmPassword))
-    
-    this.props.status ? message.success(this.props.message) : message.error(this.props.message)
+    if (password.length >= 6 && password === confirmPassword && (email !== null || email !== "") && email.match(this.email_re)) {
+      this.props.dispatch(register(email, password, confirmPassword))
+    } else {
+      message.warn("Fields must be entered or password mismatch")
+    }
+
+
   }
-  
+
   render() {
     const { email, password, confirmPassword } = this.state
 
     return (
       <div className="base-container" ref={this.props.containerRef}>
+        {this.state.loader ? <div> loading..... </div> : <></>}
         <div className="header">Register</div>
         <div className="content">
           <div className="image">
