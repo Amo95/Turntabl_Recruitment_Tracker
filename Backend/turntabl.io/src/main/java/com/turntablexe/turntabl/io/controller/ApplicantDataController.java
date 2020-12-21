@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:3006"})
 @RestController
 @RequestMapping("/api/turntablexe/")
 public class ApplicantDataController {
@@ -46,8 +47,9 @@ public class ApplicantDataController {
     }
 
     @PostMapping("/applicants")
-    public ApplicantDatamodel createApplicant(@Valid @RequestBody ApplicantDatamodel applicant) {
-        return applicationDataRepository.save(applicant);
+    public HttpStatus createApplicant(@Valid @RequestBody ApplicantDatamodel applicant) {
+        applicationDataRepository.save(applicant);
+        return  HttpStatus.valueOf(200);
     }
 
     @PutMapping("/applicants/{id}")
@@ -65,6 +67,16 @@ public class ApplicantDataController {
         applicantDatamodel.setGender(applicantDetails.getGender());
         applicantDatamodel.setUniversity(applicantDetails.getUniversity());
         applicantDatamodel.setYear_of_graduation(applicantDetails.getYear_of_graduation());
+        applicantDatamodel.setAddress1(applicantDetails.getAddress1());
+        applicantDatamodel.setAddress2(applicantDetails.getAddress2());
+        applicantDatamodel.setCity(applicantDetails.getCity());
+        applicantDatamodel.setZip_code(applicantDetails.getZip_code());
+        applicantDatamodel.setPhone_number(applicantDetails.getPhone_number());
+        applicantDatamodel.setWhatsApp_number(applicantDetails.getWhatsApp_number());
+        applicantDatamodel.setSsnit_number(applicantDetails.getSsnit_number());
+        applicantDatamodel.setNss_number(applicantDetails.getNss_number());
+        applicantDatamodel.setReferral(applicantDetails.getReferral());
+        applicantDatamodel.setRegion(applicantDetails.getRegion());
         final ApplicantDatamodel updatedApplicant = applicationDataRepository.save(applicantDatamodel);
         return ResponseEntity.ok(updatedApplicant);
     }
@@ -109,13 +121,13 @@ public class ApplicantDataController {
 //        return response;
 //    }
 
-    @GetMapping("/applicants/download/{id}")
+    @RequestMapping(value = "/applicants/download/{id}", method = RequestMethod.GET)
     public ResponseEntity<Resource> downloadCV(@PathVariable String id){
-        ApplicantDatamodel applicantDatamodelToRet = fileUploadService.downloadCV(id);
+        ApplicantDatamodel applicantDataModelToRet = fileUploadService.downloadCV(id);
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(applicantDatamodelToRet.getCvFiletype()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDatamodelToRet.getCvFilename())
-                .body(new ByteArrayResource(applicantDatamodelToRet.getCv()));
+                .contentType(MediaType.parseMediaType(applicantDataModelToRet.getCvFiletype()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + applicantDataModelToRet.getCvFilename())
+                .body(new ByteArrayResource(applicantDataModelToRet.getCv()));
     }
 
     @PutMapping("/applicants/upload/db/{id}")
@@ -135,7 +147,7 @@ public class ApplicantDataController {
             final ApplicantDatamodel updatedDatabase = applicationDataRepository.save(applicantDatamodel);
 //          response header status
             String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/turntablexe/applicants/download/db")
+                    .path("/api/turntablexe/applicants/download/")
                     .path(applicantDatamodel.getId())
                     .toUriString();
             response.setDownloadUri(downloadUri);
