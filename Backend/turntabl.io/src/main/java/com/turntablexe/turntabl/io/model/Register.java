@@ -1,7 +1,14 @@
 package com.turntablexe.turntabl.io.model;
 
+
 import com.turntablexe.turntabl.io.validation.ValidEmail;
 import lombok.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.UUID;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,8 +25,10 @@ import javax.validation.constraints.Size;
 public class Register {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+
 
     @ValidEmail
     @NotNull
@@ -34,9 +43,25 @@ public class Register {
     @Size(min = 2)
     private String confirmPassword;
 
+    @OneToOne(mappedBy = "register")
+    private ApplicantDatamodel applicantDatamodel;
+
+
     @Builder.Default
     private boolean enabled = false;
 
-    @OneToOne(mappedBy = "register")
-    private ApplicantDatamodel applicantDatamodel;
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ApplicantDatamodel getApplicantDatamodel() {
+        return applicantDatamodel;
+    }
+
+    public void setApplicantDatamodel(ApplicantDatamodel applicantDatamodel) {
+        this.applicantDatamodel = applicantDatamodel;
+    }
+
 }
