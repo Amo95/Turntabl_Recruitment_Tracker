@@ -473,32 +473,20 @@ class Applicant extends React.Component {
   }
   render() {
     return (
-      <div className="fallback">
-        <div className="contain">
-          <ReactWizard
-            steps={steps}
-            title="TURNTABL APPLICANT FORM"
-            headerTextCenter
-            validate
-            finishButtonClick={this.finishButtonClick}
-          />
-          {/* <center>
-        <div className="mt-3 footer-v2">
-          <div className="row text-light">
-            <div className="col-md-2"></div>
-            <div className="col-md-6">
-              <p className="dark">Made with <i className="fa fa-heart"></i> by turntabl Ghana</p>
-              <span className="dark">Copyright &copy; || All right reserved</span>
-            
-            
-              <div className="dark"><a href="https://github.com/turntabl" className="link" target="_blank">Follow us on <i className="fa fa-github"></i></a></div>
-              <div className="dark"><a href="https://twitter.com/turntablio" className="link" target="_blank">Follow us on <i className="fa fa-twitter"> </i></a></div>
-              </div>
-          </div>
-        </div>
-        </center> */}
+
+      <a id ="myform">
+      <div id="form" className="fallback">
+      <div className="contain">
+              <ReactWizard
+                steps={steps}
+                title="TURNTABL APPLICANT FORM"
+                headerTextCenter
+                validate
+                finishButtonClick={this.finishButtonClick}
+              />
         </div>
       </div>
+      </a>
     );
   }
 }

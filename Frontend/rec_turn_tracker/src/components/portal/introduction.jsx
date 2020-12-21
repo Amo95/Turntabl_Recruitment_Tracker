@@ -12,39 +12,26 @@ export class Introduction extends React.Component {
 
     render () {
         return (
-            <div className="body">
-                {/* <div className="pimg1">
-                    <div className="ptext">
-                        <span className="border">
-                            Welcome To Turntabl Recruitement Page
-                        </span>
-                    </div>
-                </div> */}
-                <section className="section section-light">
-                    <h2>Why work with Turntabl?</h2>
-                    <p>
-                        Turntabl is a technical partner that combines decades of Fortune 500 technology 
-                        and training experience with a track record in Ghana. We provide highly motivated 
-                        engineers managed by staff seasoned in western companies.
-                       Engineers will become available in January 2020: now is a great time to start working 
-                       with turntabl to create value for money technology sourcing for your company.
-                    </p>
-                </section>
+            <a id="#introduction">
+            <div  className="body">
 
                 <div className="pimg2">
                     <div className="ptext">
                         <span className="border trans">
-                            AFRICA
+                            Welcome To Turntabl Recruitement Page
                         </span>
                     </div>
                 </div>
                 <section className="section section-dark">
-                    <h2>Africa is not a country (again)</h2>
+                    <h2>Why work with Turntabl?</h2>
                     <p>
-                        We are not the first to comment on the lazy habit of some of those in the West 
-                        who accidentally view Africa as a single country. Prominent politicians and 
-                        other public figures have been called out for this slip of the tongue, and many 
-                        media articles have described the damage that this mindset causes.
+                    Turntabl is a technical partner that combines decades of Fortune 500 technology 
+                        and training experience with a track record in Ghana. We provide highly motivated 
+                        engineers managed by staff seasoned in western companies.
+                       Engineers will become available in January 2020: now is a great time to start working 
+                       with turntabl to create value for money technology sourcing for your company.
+                       <b>Guest Post: Doreen</b>
+                        
                     </p>
                 </section>
 
@@ -63,7 +50,7 @@ export class Introduction extends React.Component {
                     Turntabl to provide all the employees, including ourselves, with a good wage. 
                     At the same time we want to make as much positive change as possible. Ultimately we 
                     intend to part with the company, giving it away so that its wealth creation can 
-                    benefit Ghana to the fullest.
+                    benefit Ghana to the fullest. <b>Guest Post: Christiana</b>
                     </p>
                 </section>
 
@@ -91,19 +78,38 @@ export class Introduction extends React.Component {
                     proven expertise from Western companies and local knowledge will deliver the cost 
                     and capability benefits of Ghana to your business on a sound ethical basis that we 
                     can all be proud to participate in. Read more about the ethical aspect of our work 
-                    in Ghana here.
+                    in Ghana here. <b>Unknown</b>
+                    </p>
+                </section>
+
+                <div className="pimg1">
+                    <div className="ptext">
+                        <span className="border">
+                            AFRICA
+                        </span>
+                    </div>
+                </div> 
+                <section className="section section-light">
+                    <h2>Africa is not a country (again)</h2>
+                    <p>
+                        TWe are not the first to comment on the lazy habit of some of those in the West 
+                        who accidentally view Africa as a single country. Prominent politicians and 
+                        other public figures have been called out for this slip of the tongue, and many 
+                        media articles have described the damage that this mindset causes.
                     </p>
                 </section>
 
                 <div className="pimg5">
                     <div className="ptext">
                         <span className="border trans">
-                            Try To Fill Out An Applicant Form
+                            Are You Software Engineer?, Fill Out Applicant Form
+                            
                         </span>
                     </div>
                 </div>
 
             </div>
+            </a>
 
         );
     }

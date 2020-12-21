@@ -3,17 +3,25 @@
   // background-color: rgb(255, 0, 0) !important;
   width: auto;
   height: auto;
+  font-family: "Lato", sans-serif !important;
   
   .contain{
     margin-top: 2em;
-    position: relative;
-    background-color: rgb(224, 224, 224);
+    position: relative !important;
+    background-color: rgb(255, 0, 0);
     width: 100%;
     height: 100%;
+    margin-bottom: 2em;
+    font-family: "Lato", sans-serif !important;
   }
   .nav-bar{
     height: 100px;
     z-index: 1;
+  }
+
+  #myform{
+    transform: translateX(100%);
+    transition-delay: 100ms;
   }
 
 }
