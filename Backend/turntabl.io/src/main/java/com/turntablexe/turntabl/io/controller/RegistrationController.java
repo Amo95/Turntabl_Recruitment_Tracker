@@ -10,8 +10,10 @@ import com.turntablexe.turntabl.io.service.UserService;
 import com.turntablexe.turntabl.io.service.VerificationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -33,26 +35,31 @@ public class RegistrationController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/register")
-    public void registerUser(@RequestBody Register register) throws Exception {
+    public String registerUser(@RequestBody Register register){
 
-        if (register.getPassword().equals(register.getConfirmPassword())){
-            String tempEmail = register.getEmail();
-            final String encryptedPassword = bCryptPasswordEncoder.encode(register.getPassword());
-            register.setPassword(encryptedPassword);
+        try {
+            if (register.getPassword().equals(register.getConfirmPassword())) {
+                String tempEmail = register.getEmail();
+                final String encryptedPassword = bCryptPasswordEncoder.encode(register.getPassword());
+                register.setPassword(encryptedPassword);
 
-            if (userService.emailExists(tempEmail)){
-                throw new UserAlreadyExistException("These email "+tempEmail+" already exits");
+                if (userService.emailExists(tempEmail)) {
+                    return "User already exist";
+                }
+
+                userService.saveUser(register);
+
+                final VerificationToken verificationToken = new VerificationToken(register);
+                verificationTokenService.saveVerificationToken(verificationToken);
+                userService.sendVerificationEmail(register.getEmail(), verificationToken.getVerificationToken());
+            } else {
+                throw new WrongPasswordException("Password don't match");
             }
-
-            userService.saveUser(register);
-
-            final VerificationToken verificationToken = new VerificationToken(register);
-            verificationTokenService.saveVerificationToken(verificationToken);
-            userService.sendVerificationEmail(register.getEmail(), verificationToken.getVerificationToken());
-        }else {
-            throw new WrongPasswordException("ResetPassword don't match");
+        } catch (UserAlreadyExistException e) {
+            e.getMessage();
         }
 
+        return "Registration successful";
     }
 
     @GetMapping("/register/confirm")
@@ -69,14 +76,22 @@ public class RegistrationController {
 
         Optional<VerificationToken> optionalVerificationToken = verificationTokenService.findVerificationToken(token);
         optionalVerificationToken.ifPresent(userService::confirmUser);
-        return "user confirmed";
+        return "Account is activated, you can login in now";
 
+    }
+
+    @RequestMapping(value = "/loginLink")
+    ModelAndView getLoginLink(){
+        ModelAndView view = new ModelAndView();
+        view.setViewName("loginLink");
+        return view;
     }
 
     @PostMapping("/login")
     public Object loginUser(@RequestBody Register register) throws Exception {
 
         Optional<String> errorMessage = Optional.of("Wrong username/password");
+        Optional<String> accountNotEnabled = Optional.of("Activate account from your email");
 
 
         Optional<Register> userDetails = userService.fetchUserByEmail(register.getEmail());
@@ -85,7 +100,7 @@ public class RegistrationController {
             Register userInfoInDB = userDetails.get();
 
             if(!userInfoInDB.isEnabled()){
-                throw new Exception("User account is not enabled");
+                return accountNotEnabled;
             }else {
                 if (bCryptPasswordEncoder.matches(register.getPassword(), userInfoInDB.getPassword())) {
                     return userDetails;
@@ -104,14 +119,25 @@ public class RegistrationController {
             final String token = UUID.randomUUID().toString();
             userService.createPasswordResetTokenForUser(register, token);
             userService.resetPasswordMailToken(register.getEmail(), token);
-            return "change password page";
+            return "Please check you mail to finish the process";
         }
         return null;
     }
 
+    @RequestMapping(value = "/updatePassword")
+    ModelAndView changePasswordForm(@ModelAttribute ResetPassword resetPassword){
+        ModelAndView view = new ModelAndView();
+        view.setViewName("changePassword");
+        return view;
+    }
 
-    @PostMapping("/user/updatePassword")
-    public String changeUserPassword(@RequestBody ResetPassword password, @RequestParam("email") String userMAil, @RequestParam("token") String  token){
+
+    @PostMapping(path = "/updatePassword")
+    public String changeUserPassword(
+            @RequestBody ResetPassword password,
+            @RequestParam("email") String userMAil,
+            @RequestParam("token") String  token
+    ){
         final String result = passwordSecurityService.validatePasswordResetToken(token);
 
         if (result != null){
@@ -128,7 +154,7 @@ public class RegistrationController {
                 return "Mismatch password";
             }
         }
-        return "Invalid token/email";
+        return null;
 
     }
 

@@ -36,4 +36,7 @@ public class Register {
 
     @Builder.Default
     private boolean enabled = false;
+
+    @OneToOne(mappedBy = "register")
+    private ApplicantDatamodel applicantDatamodel;
 }

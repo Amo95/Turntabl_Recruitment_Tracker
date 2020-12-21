@@ -19,7 +19,7 @@ public class PasswordSecurityService {
         final PasswordResetToken passToken = passwordTokenRepository.findByToken(token);
 
         return !isTokenFound(passToken) ? "invalidToken"
-                : isTokenExpired(passToken) ? "expired"
+                : isTokenExpired(passToken) ? "Token has expired"
                 : null;
     }
 

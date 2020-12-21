@@ -43,6 +43,10 @@ public class ApplicantDatamodel {
 
     private String CvDirectory;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "register_id", referencedColumnName = "id")
+    private Register register;
+
     public ApplicantDatamodel() {
     }
 
