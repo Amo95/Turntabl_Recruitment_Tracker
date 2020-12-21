@@ -63,7 +63,7 @@ export class Dashboard extends React.Component {
                     </li>
 
                     <li>
-                        <a href="#"> Form Details </a>
+                        <a href="#"> Details </a>
                     </li>
                     
                     <li> 
