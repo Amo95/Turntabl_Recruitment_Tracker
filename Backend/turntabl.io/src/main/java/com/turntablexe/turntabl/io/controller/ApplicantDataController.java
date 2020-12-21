@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -93,10 +94,6 @@ public class ApplicantDataController {
         return response;
     }
 
-    @PostMapping("/applicants/upload/local")
-    public void uploadToLocal(@RequestParam("file") MultipartFile file){
-        fileUploadService.uploadToLocal(file);
-    }
 
 //    @PostMapping("/applicants/upload/db/")
 //    public FileUploadResponse uploadCVToDB(@RequestParam("file") MultipartFile file){
@@ -131,7 +128,9 @@ public class ApplicantDataController {
     }
 
     @PutMapping("/applicants/upload/db/{id}")
-    public FileUploadResponse uploadDatabase(@PathVariable(value = "id") String applicantId, @RequestParam("file") MultipartFile file) throws ResourceNotFoundException {
+    public FileUploadResponse uploadDatabase(@PathVariable(value = "id") String applicantId, @RequestParam("cv") MultipartFile file) throws ResourceNotFoundException {
+
+
         ApplicantDatamodel applicantDatamodel = applicationDataRepository.findById(applicantId)
                 .orElseThrow(() -> new ResourceNotFoundException("Applicant not found for this id :: " + applicantId));
 
@@ -140,12 +139,14 @@ public class ApplicantDataController {
 
         if((applicantDatamodel != null && file.getContentType().equals("application/pdf"))) {
 
+
             applicantDatamodel.setCv(applicantDatamodel1.getCv());
             applicantDatamodel.setCvDirectory(applicantDatamodel1.getCvDirectory());
             applicantDatamodel.setCvFiletype(applicantDatamodel1.getCvFiletype());
             applicantDatamodel.setCvFilename(applicantDatamodel1.getCvFilename());
             final ApplicantDatamodel updatedDatabase = applicationDataRepository.save(applicantDatamodel);
 //          response header status
+
             String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/api/turntablexe/applicants/download/")
                     .path(applicantDatamodel.getId())
