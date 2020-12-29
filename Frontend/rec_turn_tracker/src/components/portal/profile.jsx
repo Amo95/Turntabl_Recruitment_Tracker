@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class Profile extends Component {
     state = {  }
@@ -125,42 +126,9 @@ class Profile extends Component {
                     </div>
             </div>
             </div>
-            {/* <h4>Personal Information</h4>
-            <div className="personal-info">
-                <div className="flow">
-                <label htmlFor="name"> Name : </label>
-                <p>Innocent Mawulorm Fiadu</p>
-                </div>
-
-                <div className="flow">
-                <label htmlFor="name"> Nike Name : </label>
-                <p>HolyByDefault</p>
-                </div>
-
-                <div className="flow">
-                <label htmlFor="mail"> E-mail : </label>
-                <p> innocent.fiadu@turntabl.io</p>
-                </div>
-
-                <div className="flow">
-                <label htmlFor="name"> Gender : </label>
-                <p>Male</p>
-                </div>
-
-                <div className="flow">
-                <label htmlFor="name"> Phone : </label>
-                <p>+233555154869</p>
-                <p>+233555154869</p>
-                </div>
-
-                <div className="flow">
-                <label htmlFor="name"> Date Of Birth : </label>
-                <p>28/06/1995</p>
-                </div>
-            </div>     */}
         </div>
          );
     }
 }
  
-export default Profile;
+export default connect() (Profile);

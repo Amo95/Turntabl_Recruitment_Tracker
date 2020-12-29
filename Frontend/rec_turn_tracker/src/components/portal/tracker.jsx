@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class Tracker extends Component {
     state = {  }
@@ -9,4 +10,4 @@ class Tracker extends Component {
     }
 }
  
-export default Tracker;
+export default connect() (Tracker);
