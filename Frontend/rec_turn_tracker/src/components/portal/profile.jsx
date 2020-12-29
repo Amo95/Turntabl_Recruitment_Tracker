@@ -14,6 +14,9 @@ class Profile extends Component {
                         alt="user" width="100" />
                     </div>
                     <p>Passport Photo</p>
+                    <div className="change-password">
+                        <button> Change Password</button>
+                    </div>
                 </div>
 
                 <div class="right">
