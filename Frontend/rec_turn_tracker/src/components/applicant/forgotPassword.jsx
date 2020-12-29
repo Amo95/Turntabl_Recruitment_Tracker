@@ -37,8 +37,7 @@ export class ForgotPassword extends React.Component {
                       Recover
                     </button>
                   </div>
-                  <label  className= "notice"> Check Your Email After Submission </label>
-                  <label  className= "notice"> <a href="https://accounts.google.com/ServiceLogin?service=mail&continue=https://mail.google.com/mail/&hl=en" target="_blank" rel="noopener noreferrer">Click Here</a> </label>
+                  <label  className= "notice"> <a href="https://accounts.google.com/ServiceLogin?service=mail&continue=https://mail.google.com/mail/&hl=en" target="_blank" rel="noopener noreferrer">Click to Open Gmail</a> </label>
                 </div>
               </div>
             </div>

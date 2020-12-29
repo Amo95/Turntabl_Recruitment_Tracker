@@ -9,6 +9,7 @@ import Togle from "./components/applicant/Togle";
 import ForgotPassword from "./components/applicant/forgotPassword";
 import Applicant from "./components/applicant/applicantFormv2";
 import Dashboard from "./components/portal/dashboard";
+import Navboard from "./components/portal/navboard";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends React.Component {
           {/* {this.props.login_stat || localStorage.getItem("isLogedIn") ? <Route path="/applyv2" component={Applicant} strict exact={true} /> : <Redirect to="/" />} */}
           {/* <Route path="/apply" component = {ApplicationForm} strict exact = {true} /> */}
         </Switch>
+        <Route path="/navboard" component = {Navboard} strict exact = {true} /> 
         <Route path="/dashboard" component = {Dashboard} strict exact = {true} /> 
       </ Router>
     )
