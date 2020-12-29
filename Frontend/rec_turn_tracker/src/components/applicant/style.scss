@@ -714,9 +714,8 @@ nav {
         border-radius: 5px;
         margin-bottom: 10px;
         
+        }
       }
-      }
-      
 
       h4{
         margin-bottom: 10px;
@@ -725,7 +724,26 @@ nav {
       p{
         font-size: 12px;
         color: #717171;
+      }
+      .change-password {
+        margin-top: 2em;
+        border-radius: 5px;
+        box-shadow: 0 1px 10px 0 rgba(172, 96, 165, 0.829);
+        &:hover{
+          box-shadow: 0 1px 20px 0 #ad5389;
+
+        }
         
+        button{
+          background: #ad5389;
+          border-radius: 3px;
+          border: 0px;
+          color: #ffffff;
+
+          &:focus {
+            box-shadow: 0 1px 10px 0 #ff8800;
+          }
+        }
       }
     }
 
@@ -777,12 +795,19 @@ nav {
 
 }
 
+//============================================================
+//style sheet for bank details
+//============================================================
+.bank-body{
+  height: 50vh;
+  margin-top: 5em;
+}
+
+//==============================================================
+//style shhet for tracker
+//==============================================================
 .tracker-body{
   height: 50vh;
   margin-top: 5em;
 }
 
-.bank-body{
-  height: 50vh;
-  margin-top: 5em;
-}
