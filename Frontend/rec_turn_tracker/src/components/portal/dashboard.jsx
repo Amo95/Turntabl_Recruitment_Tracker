@@ -1,9 +1,19 @@
 import React from "react";
 // import AppJs from "./app";
+import { connect } from 'react-redux'
+import { Link, Redirect } from 'react-router-dom'
+
+import Applicant from "../applicant/applicantFormv2";
+import Introduction from "./introduction";
+import Footer from "./footer";
+
 
 export class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {}
+
+    onSubmitHandler = () => {
+        localStorage.clear();
+        return <Redirect to="/" />
     }
 
     navSlide = () => {
@@ -35,54 +45,64 @@ export class Dashboard extends React.Component {
 
     render () {
         return (
+            <a id="dashboard">
+            <div>
 
             <nav>
                 <div className="logo">
-                    <h4>turntabl</h4>
+                    <h4><span>turn</span>tabl</h4>
                 </div>
 
-                <ul className="nav-links" onClick = {this.navSlide}>
+                <ul className="nav-links" /*onClick = {this.navSlide} */ > 
+                    <li>
+                        <a href="#dashboard"> Home </a>
+                    </li>
+
+                    <li>
+                        <a href="#myform"> Applicant Form </a>
+                    </li>
+
+                    <li>
+                        <a href="#"> Form Details </a>
+                    </li>
+                    
                     <li> 
                         <p>Hello Jane Doe</p>
                     </li>
 
-                    <li className="turnOff">
-                        <p>||</p>
-                    </li>
-
                     <li>
-                        <a href="#"> Applicant Form </a>
-                    </li>
-
-                    <li className="turnOff">
-                        <p>|</p>
-                    </li>
-
-                    <li>
-                        <a href="#"> Tracker </a>
-                    </li>
-
-                    <li className="turnOff">
-                        <p>|</p>
-                    </li>
-
-                    <li>
-                        <a href="#"> Logout</a>
+                        <button>Logout</button>
                     </li>
                     
 
                 </ul>
+
                 <button className="buggerLines" onClick = {this.navSlide}>
                     <div className="line1"></div>
                     <div className="line2"></div>
                     <div className="line3"></div>
                 </button> 
             </nav>
+
+            <div id="intro">
+                <Introduction />
+            </div>
+            
+            <div id="form" className = "fallback">
+                <Applicant /> 
+            </div>
+            <div>
+                <Footer />
+            </div>
+            
+        </div>
+        </a>
+
+
         );
     }
 
 
 }
 
-
-export default Dashboard;
+export default connect()(Dashboard);

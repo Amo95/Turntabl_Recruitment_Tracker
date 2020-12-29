@@ -58,6 +58,7 @@ class Login extends React.Component {
                 Login
             </button>
             </div>
+            <a href="http://" target="_blank" rel="noopener noreferrer"> <b>Forgot Password?</b> </a>
           </div>
         </form>
       );
