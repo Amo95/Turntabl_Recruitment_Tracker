@@ -480,4 +480,4 @@ class Applicant extends React.Component {
 }
 
 
-export default connect()(Applicant)
+export default connect()(Applicant);

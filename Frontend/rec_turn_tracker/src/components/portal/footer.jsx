@@ -30,7 +30,6 @@ export class Footer extends React.Component {
                         </div>
                         <div className="footer-section links">
                             <h2>Quick Links</h2>
-                            <br/>
                             <ul>
                                 <a href="https://turntabl.io/blog" target="_blank" rel="noopener noreferrer"><li> Our Blog</li></a>
                                 <a href="https://turntabl.io/aims" target="_blank" rel="noopener noreferrer"><li> Our Aims</li></a>
@@ -48,7 +47,7 @@ export class Footer extends React.Component {
 
                     <div className="footer-bottom">
                         &copy; turntabl.io | Design by "Group of Eight" &nbsp; &nbsp; &nbsp; &nbsp; 
-                        Made with <i className="fa fa-heart"></i> by <a href="https://turntabl.io/">Turntabl</a> in Ghana. 
+                        Made with <i className="fa fa-heart"></i> by <a className="turn" href="https://turntabl.io/">Turntabl</a> in Ghana. 
 
                     </div>
                 </div>

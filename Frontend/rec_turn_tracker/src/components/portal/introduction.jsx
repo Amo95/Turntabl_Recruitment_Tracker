@@ -18,7 +18,7 @@ export class Introduction extends React.Component {
                 <div className="pimg2">
                     <div className="ptext">
                         <span className="border trans">
-                            Welcome To Turntabl Recruitement Page
+                           Turntabl Recruitement Page
                         </span>
                     </div>
                 </div>
@@ -102,7 +102,7 @@ export class Introduction extends React.Component {
                 <div className="pimg5">
                     <div className="ptext">
                         <span className="border trans">
-                            Are You Software Engineer?, Fill Out Applicant Form
+                            Be a Software Engineer @turntabl
                             
                         </span>
                     </div>

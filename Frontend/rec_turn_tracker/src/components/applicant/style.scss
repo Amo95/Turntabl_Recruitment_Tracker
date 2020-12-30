@@ -60,7 +60,7 @@
           transition: all 250ms ease-in-out;
           &:hover {
             background-color: #ffffff;
-            box-shadow: 0px 0px 14px 0.3px #4B0082;
+            box-shadow: 0px 0px 14px 0.3px #ad5389;;
           }
           &:focus {
             outline: none;
@@ -103,7 +103,7 @@
 // //====================================================================================================
 
 nav {
-  min-height: 6vh;
+  min-height: 10vh;
   width: 100%;
   z-index: 3;
   padding-top: 5px;
@@ -112,12 +112,12 @@ nav {
   position: fixed;
   justify-content: space-around;
   align-items: center;
-  font-family: "Open Sans" sans-serif;
+  font-family: "Lato" sans-serif;
   background-color: #ad5389;
-  // background-color: rgb(186, 131, 248);
-  // background: linear-gradient(to left, #ad5389, #3c1053);
-  box-shadow: 0px 0px 7px 0.8px rgb(255, 123, 0);
-  margin-bottom: 0.2em;
+  margin-bottom: 2em;
+  cursor: default;
+  border-left: 2px solid #bdb8d7;
+  border-left: 2px solid rgba(0,0,0,0.05);
   
 }
 
@@ -128,6 +128,10 @@ nav {
   font-size: 20px;
   float: left;
   margin: 15px;
+  a{
+    text-decoration: none;
+    color: white;
+  }
 
   span{
     color: rgb(255, 123, 0);
@@ -139,13 +143,25 @@ nav {
   justify-content: space-around;
   width: 60%;
   float: right;
+  position: fixed;
+  right: 0px;
+  height: 92vh;
+  top: 9vh;
+  background-color: #ad5389;
+  display: top;
+  flex-direction: column;
+  align-items: baseline;
+  width: 20%;
+  transform: translateX(100%);
+  transition: transform 0.7s ease-in;
+  font-family: "Lato" sans-serif;
 }
 
 
 .nav-links li {
   list-style: none;
-  margin-top: 15px;
   width: max-content;
+  font-family: "Lato" sans-serif;
   
 }
 
@@ -155,8 +171,8 @@ nav {
   border-bottom-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: rgba(255, 123, 0, 0.644);
-
   background: rgba(255, 123, 0, 0.644);
+  font-family: "Lato" sans-serif;
 }
 
 
@@ -165,10 +181,10 @@ nav {
   text-decoration: none;
   letter-spacing: 3px;
   font-size: 14px;
-  font-weight: bold;
   display: inline;
   width: fit-content;
   padding: 10px;
+  font-family: "Lato" sans-serif;
 
 }
 
@@ -177,39 +193,26 @@ nav {
   text-decoration: none;
   letter-spacing: 3px;
   font-size: 14px;
-  font-weight: bold;
   display: inline;
   width: fit-content;
   padding: 5px;
-  background: linear-gradient(to left, #ad5389, #3c1053);
+  background: linear-gradient(to left, #ffc400, #ff8800);
+  font-family: "Lato" sans-serif;
   // background-color: rgb(186, 131, 248);
   border: 0px;
 
 }
 
-.nav-links p {
-  color: #ffffff;
-  text-decoration: none;
-  letter-spacing: 3px;
-  font-size: 16px;
-  font-weight: bold;
-  display: inline;
-  width: fit-content;
-  padding: 10px;
-
-}
-
 .buggerLines {
   display: none;
-  cursor: pointer;
-  float: left;
-}
 
-.buggerLines div {
-  width: 25px;
-  height: 2px;
-  background-color: #ffffff;
-  margin: 5px;
+  div {
+    width: 23px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+  }
+
 }
 
 .fallback {
@@ -229,16 +232,13 @@ nav {
   }
   
   .nav-links{
-    position: fixed;
+    position: absolute;
     right: 0px;
     height: 92vh;
-    top: 8vh;
+    top: 12.2vh;
     background-color: #ad5389;
-
-    float: right;
     display: top;
     flex-direction: column;
-    align-items: center;
     width: 60%;
     transform: translateX(100%);
     transition: transform 0.7s ease-in-out;
@@ -255,12 +255,16 @@ nav {
 
   .buggerLines{
     display: block;
-    background-color: rgb(255, 123, 0);
+    background-color: #ad5389;
     color: #ffffff;
     border: 0px;
     border-radius: 3px;
     float: right;
     margin: 10px;
+
+    div{
+      border-radius: 2px;
+    }
   }
 
 }
@@ -304,6 +308,7 @@ nav {
   font-weight: 400;
   line-height: 1.8em;
   color: #696969;
+  cursor: default;
 
   .pimg1, .pimg2, .pimg3, .pimg4, .pimg5{
     position: relative;
@@ -311,8 +316,11 @@ nav {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
+//========================================================
     // parallax effect. 
+//========================================================
+
+    // background-attachment: scroll;
     background-attachment: fixed;
   }
 
@@ -339,7 +347,7 @@ nav {
 
   .pimg5{
     background-image: url(../../pl-image4.jpg);
-    min-height: 400px;
+    min-height: 500px;
     
   }
   
@@ -370,7 +378,7 @@ nav {
       padding: 10px;
     }
     // background-color: rgb(186, 131, 248);
-    background-color: #ad538970;
+    background-color: #f3f3f3;
     color: #2b2b2b;
   }
 
@@ -380,7 +388,7 @@ nav {
       padding: 10px;
     }
     // background-color: rgb(186, 131, 248);
-    background-color:  #ad538970;
+    background-color:  #f3f3f3;
     opacity: 1.70px;
     color: #2b2b2b;
   }
@@ -398,7 +406,7 @@ nav {
   }
 
   .ptext .border {
-    background-color: rgba(255, 255, 255, 0.685);
+    background-color: rgba(255, 255, 255, 0.788);
     // background: linear-gradient(to left, #ad5389, #3c1053);
     color: #000000;
     padding: 25px;
@@ -427,17 +435,18 @@ nav {
   }
 }
 
-
 // //dashboard or navboard footer style
+//==========================================================================================================
+//dashboard or navboard footer style
+//==========================================================================================================
 
 .footer-foot {
-  // background-color: rgb(186, 131, 248);
   background-color: #ad5389;
-  // background: linear-gradient(to left, #ad5389, #3c1053);
   font-family: "Lato", sans-serif;
   color: #ffffff;
   height: 300px;
   position: relative;
+  cursor: default;
 
   .footer-content {
     height: 300px;
@@ -451,8 +460,12 @@ nav {
     h2{
       color: white;
     }
+    p{
+      margin-bottom: 0em;
+    }
 
     .about {
+      cursor: default;
       h2 span {
         color: rgb(255, 123, 0);
       }
@@ -461,13 +474,19 @@ nav {
         text-decoration-line: underline;
         text-decoration-style: dotted;
         text-decoration-color: rgb(255, 123, 0);
-        text-decoration-thickness: 3px;
+        text-decoration-thickness: 1px;
         color: white;
+
+        :hover {
+          color: rgb(255, 123, 0);
+        }
       }
 
       .socials a{
-        display: block;
+        display: inline-flex;
         color: white;
+        padding-right: 20px;
+        text-decoration: none;
 
         :hover {
           color: rgb(255, 123, 0);
@@ -480,7 +499,7 @@ nav {
       text-decoration-line: underline;
       text-decoration-style: dotted;
       text-decoration-color: rgb(255, 123, 0);
-      text-decoration-thickness: 3px;
+      text-decoration-thickness: 1px;
 
       :hover{
         color: rgb(255, 123, 0);
@@ -502,7 +521,7 @@ nav {
       text-decoration-line: underline;
       text-decoration-style: dotted;
       text-decoration-color: rgb(255, 123, 0);
-      text-decoration-thickness: 3px;
+      text-decoration-thickness: 1px;
 
       :hover{
         color: rgb(255, 123, 0);
@@ -533,6 +552,264 @@ nav {
   left: 0px;
   padding-top: 20px;
 
+  a {
+    color: rgb(255, 123, 0);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: rgb(255, 255, 255);
+    text-decoration-thickness: 1px;
+  }
+
 }
 
 }
+
+//==============================================================================================
+// dash.jsx style
+//==============================================================================================
+
+.dash {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+
+  .wrapper{
+    display: flex;
+    position: relative;
+
+    
+  }
+
+  .sidebar{
+    width: 200px;
+    height: 100%;
+    background-color: #ad5389;
+    padding: 30px 0px;
+    position: fixed;
+
+    h2{
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+
+    span {
+      color: rgb(255, 136, 0);
+    }
+    }
+    ul li{
+      padding: 13px;
+      margin-left: -1em;
+      border-bottom: 1px solid #bdb8d7;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      list-style-type: none;
+
+      button{
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        display: inline;
+        width: fit-content;
+        padding: 5px;
+        background: linear-gradient(to left, #ffc400, #ff8800);
+        font-family: "Lato" sans-serif;
+        // background-color: rgb(186, 131, 248);
+        border: 0px;
+      
+      }
+
+      &:hover{
+        background-color: #b1307d;
+      }  
+    }    
+  
+    a{
+      color: #ffffff;
+      text-decoration: none;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      .fas{
+        width: 25px;
+      }
+
+      .menu-list {
+        display: block;
+      }
+
+      &:hover{
+        color: rgb(214, 214, 214);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .main_content{
+    width: 100%;
+    margin-left: 200px;
+  
+    .info{
+      margin: 5px;
+      color: #717171;
+      line-height: 25px;
+      height: auto;
+  
+      // div{
+      //   // margin-bottom: 20px;
+      // }
+    }
+  }
+
+  
+
+  @media screen and (max-width: 768px) {
+    .sidebar{
+      display: none;
+      // visibility: hidden;
+    }
+
+    .main_content{
+      margin-left: 0px;
+    }
+  }
+
+}
+
+//==========================================================================================
+// style sheet for profilr page
+//==========================================================================================
+
+.profile-body{
+  padding: 10px;
+  height: 100%;
+  margin-top: 5em;
+  margin-bottom: 1em;
+  font-family: "Lato" sans-serif;
+  box-shadow: 0px 0px 12px 0.5px #ad5389;
+  border-radius: 3px;
+
+  .wrap{
+    position: relative;
+    width: auto;
+    display: flex;
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+
+    .left{
+      width: 40%;
+      background-color: #ad538942;
+      padding: 30px 25px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      text-align: center;
+      color: #717171;
+
+      .img-size{
+        width: 140px;
+        height: 170px;
+        box-shadow: 0 1px 20px 0 rgba(172, 96, 165, 0.651);
+
+        img{
+        border-radius: 5px;
+        margin-bottom: 10px;
+        
+        }
+      }
+
+      h4{
+        margin-bottom: 10px;
+      }
+
+      p{
+        font-size: 12px;
+        color: #717171;
+      }
+      .change-password {
+        margin-top: 2em;
+        border-radius: 5px;
+        box-shadow: 0 1px 10px 0 rgba(172, 96, 165, 0.829);
+        &:hover{
+          box-shadow: 0 1px 20px 0 #ad5389;
+
+        }
+        
+        button{
+          background: #ad5389;
+          border-radius: 3px;
+          border: 0px;
+          color: #ffffff;
+
+          &:focus {
+            box-shadow: 0 1px 10px 0 #ff8800;
+          }
+        }
+      }
+    }
+
+    .right{
+      background: #fff;
+      padding: 30px 25px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      .info, .projects{
+        margin-bottom: 25px;
+
+        h3{
+          margin-bottom: 15px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #e0e0e0;
+          color: #353c4e;
+          text-transform: uppercase;
+          letter-spacing: 5px;
+        }
+        .info_data, .projects_data{
+          display: flex;
+          justify-content: space-between;
+
+          .data{
+            width: 100%;
+            margin: 10px;
+
+            span{
+              color: #474747;
+              margin-bottom: 5px;
+              font-size: 18px;
+          }
+
+          p{
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: #8a8a8a;
+            width: max-content;
+          }
+          }
+
+
+        }
+
+      }
+    }
+  }
+
+}
+
+//============================================================
+//style sheet for bank details
+//============================================================
+.bank-body{
+  height: 50vh;
+  margin-top: 5em;
+}
+
+//==============================================================
+//style shhet for tracker
+//==============================================================
+.tracker-body{
+  height: 50vh;
+  margin-top: 5em;
+}
+

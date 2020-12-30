@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .App-logo {
@@ -77,7 +77,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(252, 243, 224);
-    box-shadow: 0px 0px 12px 2px #420072;
+    box-shadow: 0px 0px 12px 2px #ad5389;;
     border-radius: 4px;
     position: relative;
     z-index: 99;
@@ -109,7 +109,7 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0px 0px 12px 2px #420072;
+    box-shadow: 0px 0px 12px 2px #ad5389;;
     border-radius: 4px;
     position: relative;
     z-index: 99;
@@ -138,7 +138,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(252, 243, 224);
-    box-shadow: 0px 0px 12px 2px #420072;
+    box-shadow: 0px 0px 12px 2px #ad5389;;
     border-radius: 4px;
     position: relative;
     z-index: 99;
@@ -153,7 +153,7 @@
     flex-direction: column;
     justify-content: center;
     height: 90%;
-    background-color: #4B0082;
+    background-color: #ad5389;
     width: 100%;
     position: absolute;
     right: -34%;
@@ -161,7 +161,7 @@
     z-index: 1;
     transition: all 400ms ease-in-out;
     cursor: pointer;
-    box-shadow: 0px 0px 4px 2px #FF8A00;
+    box-shadow: 0px 0px 4px 2px #ad5389;
 
     &.right {
       right: -40%;
@@ -196,15 +196,15 @@
   font-size: 21px;
   padding: 5px 20px;
   border: 0;
-  background-color: #FF8A00;
+  background-color: #ad5389;
   color: #fff;
   border-radius: 3px;
   transition: all 510ms ease-in-out;
   cursor: pointer;
   &:hover {
     background-color: #ffffff;
-    color: #FF8A00;
-    border: 1.2px solid #FF8A00;
+    color: #ad5389;
+    border: 1.2px solid #ad5389;
     font-style: italic;
   }
   &:focus {
