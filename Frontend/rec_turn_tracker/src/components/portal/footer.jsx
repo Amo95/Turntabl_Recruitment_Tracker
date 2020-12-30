@@ -11,7 +11,7 @@ export class Footer extends React.Component {
     render() {
         return (
             <div>
-                <div className="footer">
+                <div className="footer-foot">
                     <div className="footer-content">
                         <div className="footer-section about">
                             <h2 className="logo-text"> <span>TURN</span>TABL</h2>

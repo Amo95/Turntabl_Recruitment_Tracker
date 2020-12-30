@@ -74,8 +74,11 @@
 
   .footer {
     margin-top: 1em;
+    margin-bottom: 1em;
   }
-  .note {
+  
+
+  .notice {
     margin-top:1em ;
     font-size: 20px;
     color: rgb(255, 0, 98);
@@ -83,457 +86,9 @@
     &:hover {
       color: #ff0095;
       font-style: italic;
-    }
-  }
-}
-
-//==========================================================================================
-
-.base-container-form-header {
-  width: 70%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .header-form {
-    font-size: 64px;
-    font-family: "Open Sans", sans-serif;
-  }
-}
-
-//============================================================================================
-
-
-// form container
-.base-container-form {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  label{
-    font-size: 24px;
-    margin: 5px;
-    margin-top: 1em;
-    color: #484749;
-  }
-  label b  {
-    font-size: 24px;
-    margin: 5px;
-    color: #484749;
+    }}
   }
 
-  .header-form {
-    font-size: 24px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  .content-form {
-    float: left;
-    label b {
-      font-size: 16px;
-      margin-top: 0.2em;
-      color: #484749;
-      float: left;
-    }
-
-    // .image {
-    //   width: 21em;
-    //   img {
-    //     width: 100%;
-    //     height: 100%;
-    //   }
-    // }
-
-    .form-form {
-      margin-top: 1.2em;
-      margin-bottom: 2em;
-      // border: 2px solid red;
-      display: flex;
-      align-items: center;
-      padding: 5px;
-      
-
-      .form-group-form {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: fit-content;
-        label {
-          font-size: 16px;
-        }
-        label .note {
-          font-size: 20px;
-          color: red;
-        }
-        .application-form{
-          margin-top: 6px;
-          min-width: 30em;
-          height: 37px;
-          padding: 0px 10px;
-          font-size: 16px;
-          font-family: "Open Sans", sans-serif;
-          background-color: #dfc5f1;
-          border: 0;
-          border-radius: 4px;
-          margin-bottom: 31px;
-          transition: all 250ms ease-in-out;
-          &:hover {
-            background-color: #ffffff;
-            box-shadow: 0px 0px 14px 0.3px #4B0082;
-          }
-          &:focus {
-            outline: none;
-            transition: all 510ms ease-in-out;
-            box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-          }
-        }
-        .application-form-cv{
-          margin-top: 6px;
-          min-width: 3em;
-          height:em;
-          padding: 0px 10px;
-          font-size: 16px;
-          font-family: "Open Sans", sans-serif;
-          background-color: #dfc5f1;
-          border: 0;
-          border-radius: 4px;
-          margin-bottom: 31px;
-          transition: all 250ms ease-in-out;
-          ::-webkit-file-upload-button{
-            background-color: rgba(255, 155, 62, 0.74);
-            padding: 5px;
-            border: none;
-            border-radius: 6px;
-            outline: none;
-          }
-          &:hover {
-            background-color: #ffffff;
-            box-shadow: 0px 0px 14px 0.3px #4B0082;
-          }
-          &:focus {
-            outline: none;
-            transition: all 510ms ease-in-out;
-            box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74);
-          }
-        }
-      }
-    }
-// form editor for form-full-name 
-    .form-group-form-full-name {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: fit-content;
-      label {
-        font-size: 16px;
-      }
-      label .note {
-        font-size: 20px;
-        color: red;
-      }
-      .application-form{
-        margin-top: 6px;
-        margin-right: 40px;
-        min-width: 25em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-    }
-
-    //employment and school form"es"
-    .form-group-form-es{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: fit-content;
-      label {
-        font-size: 16px;
-      }
-      label .note {
-        font-size: 20px;
-        color: red;
-      }
-      .application-form-es{
-        margin-top: 6px;
-        margin-right: 40px;
-        min-width: 25em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-
-      .application-form-es-down{
-        margin-top: 2.9em;
-        margin-right: 40px;
-        min-width: 25em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-    }
-
-    // form editor for Address contact "ac"
-    .form-group-form-ac {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: fit-content;
-      label {
-        font-size: 16px;
-      }
-      label .note {
-        font-size: 20px;
-        color: red;
-      }
-      .application-form{
-        margin-top: 6px;
-        margin-right: 40px;
-        min-width: 25em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-    }
-
-    .form-group-form-ac-min {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: fit-content;
-      label {
-        font-size: 16px;
-      }
-      label .note {
-        font-size: 20px;
-        color: red;
-      }
-      .application-form{
-        margin-top: 6px;
-        margin-right: 4em;
-        min-width: 14.4em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-    }
-
-    .form-group-form-ac-min-ac {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: fit-content;
-      label {
-        font-size: 16px;
-      }
-      label .note {
-        font-size: 20px;
-        color: red;
-      }
-      .application-form{
-        margin-top: 6px;
-        margin-right: 2em;
-        min-width: 19em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-      .application-form-ac{
-        margin-top: 6px;
-        margin-right: 14.5em;
-        min-width: 19em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-      .application-form-ac-email{
-        margin-top: 6px;
-        margin-right: 14.5em;
-        min-width: 19em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-    }
-
-
-
-
-    // form editor for date
-    .form-group-form-full-name-date {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: fit-content;
-      label {
-        font-size: 16px;
-      }
-      label .note {
-        font-size: 20px;
-        color: red;
-      }
-      .application-form{
-        margin-top: 6px;
-        margin-right: 4.6em;
-        min-width: 10em;
-        height: 37px;
-        padding: 0px 10px;
-        font-size: 16px;
-        font-family: "Open Sans", sans-serif;
-        background-color: #dfc5f1;
-        border: 0;
-        border-radius: 4px;
-        margin-bottom: 1px;
-        transition: all 250ms ease-in-out;
-        &:hover {
-          background-color: #ffffff;
-          box-shadow: 0px 0px 14px 0.3px #4B0082;
-        }
-        &:focus {
-          outline: none;
-          transition: all 510ms ease-in-out;
-          box-shadow: 0px 0px 12px 0.8px rgba(255, 155, 62, 0.74)
-        }
-      }
-    }
-  }
-
-  .footer {
-    margin-top: 3em;
-  }
-  .note {
-    margin-top:1em ;
-    font-size: 20px;
-    color: rgb(255, 0, 98);
-    font-family: "Open Sans", sans-serif;;
-    &:hover {
-      color: #ff0095;
-      font-style: italic;
-    }
-  }
-}
 
 ::-webkit-file-upload-button{
   background-color: rgba(255, 155, 62, 0.74);
@@ -543,9 +98,9 @@
   outline: none;
 }
 
-//====================================================================================================
-//  portal directory Scss
-//====================================================================================================
+// //====================================================================================================
+// //  portal directory Scss
+// //====================================================================================================
 
 nav {
   min-height: 6vh;
@@ -738,9 +293,9 @@ nav {
 }
 
 
-//===========================================================================================================
-// Introduction page css
-//===========================================================================================================
+// //===========================================================================================================
+// // Introduction page css
+// //===========================================================================================================
 
 .body{
   height: 100%;
@@ -750,7 +305,7 @@ nav {
   line-height: 1.8em;
   color: #696969;
 
-  .pimg1, .pimg2, .pimg3, .pimg4, .pimg5,{
+  .pimg1, .pimg2, .pimg3, .pimg4, .pimg5{
     position: relative;
     opacity: 0.80;
     background-position: center;
@@ -769,7 +324,7 @@ nav {
 
   .pimg2{
     background-image: url(../../pl-image.jpg);
-    min-height: 1000px;
+    min-height: 665px;
   }
 
   .pimg3{
@@ -873,9 +428,9 @@ nav {
 }
 
 
-//dashboard or navboard footer style
+// //dashboard or navboard footer style
 
-.footer {
+.footer-foot {
   // background-color: rgb(186, 131, 248);
   background-color: #ad5389;
   // background: linear-gradient(to left, #ad5389, #3c1053);

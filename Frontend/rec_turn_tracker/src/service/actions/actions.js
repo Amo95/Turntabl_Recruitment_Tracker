@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, REGISTER_SUCCESS, REGISTER_FAIL } from "./actionsConstant";
+import { LOGIN, LOGIN_INIT, LOGIN_END, LOGOUT, REGISTER_SUCCESS, REGISTER_FAIL, REGISTER_INIT, REGISTER_END } from "./actionsConstant";
 import axios from 'axios'
 import { message } from 'antd'
 
@@ -6,6 +6,16 @@ const BASE_URL = "http://localhost:8080/api/turntablexe/";
 
 const email_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+
+
+export const logininit = () => ({
+    type: LOGIN_INIT
+});
+
+
+export const loginend = () => ({
+    type: LOGIN_END
+});
 
 
 export const login = (payload) => {
@@ -21,6 +31,17 @@ export const logout = () => {
         type: LOGOUT,
     }
 }
+
+
+
+export const registerinit = () => ({
+    type: REGISTER_INIT
+});
+
+
+export const registerend = () => ({
+    type: REGISTER_END
+});
 
 export const register_succes = () => {
     return {
@@ -42,46 +63,53 @@ export const apply = () => {
 
 
 
-
-
 export const loginUser = (email, password) => (dispatch) => {
     if ((email.length > 0 && password.length >= 6) && email.match(email_re)) {
+        dispatch(logininit())
         axios.post(BASE_URL + "login", { email, password })
             .then(res => {
-                const { id, email, password } = res.data
-                if ((id !== 0 || id !== null) && (email !== null)) {
-                    // localStorage.setItem("id", id)
-                    // localStorage.setItem("email", email)
-                    // localStorage.setItem("password", password)
-                    dispatch(login(res.data))
+                const { id, email } = res.data
+
+                if (res.data === "Wrong username/password") {
+                    dispatch(loginend())
+                    message.info("Wrong username/password")
+                }
+                else if (res.data === "Activate account from your email") {
+                    dispatch(loginend())
+                    message.info("Activate account from your email")
                 }
                 else {
-                    message.error("Invalid email or password")
+                    localStorage.setItem("id", res.data.id)
+                    localStorage.setItem("email", res.data.email)
+                    dispatch(login(res.data))
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                dispatch(loginend())
+            });
     } else {
-        console.log("Bad data")
+        message.warn("Invalid User or Password")
     }
 }
 
 
-export const register = (email, password) => dispatch => {
-    axios.post(BASE_URL + "register", { email: email, password: password })
+export const register = (email, password, confirmPassword) => dispatch => {
+    dispatch(registerinit())
+    axios.post(BASE_URL + "register", { email: email, password: password, confirmPassword: confirmPassword })
         .then(res => {
-            if (res.data.email === "User already exist") {
-
+            if (res.data === "User already exist") {
+                dispatch(registerend())
                 message.error("User Already Exist")
                 dispatch(register_fail())
             }
             else if (res.data !== "") {
                 const { id, email, password } = res.data
-                localStorage.setItem("id", id)
-                message.success("Register Successful Checkout to Login")
+                dispatch(registerend())
+                message.success("Register Successful Check email to activate account")
                 dispatch(register_succes())
             }
         })
-        .catch(err => console.log(err));
+        .catch(err => err);
 }
 
 

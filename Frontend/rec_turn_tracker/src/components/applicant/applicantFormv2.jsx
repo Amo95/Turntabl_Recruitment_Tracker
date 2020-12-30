@@ -20,12 +20,11 @@ import "./applyv2.scss"
 
 
 import "bootstrap/dist/css/bootstrap.css";
-import SimpleReactValidator from 'simple-react-validator';
 
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import Header from "./header";
+
 
 
 
@@ -44,23 +43,12 @@ class FirstStep extends React.Component {
     };
   }
 
-  validator = new SimpleReactValidator();
-
   onChangeHandler = (event) => {
     let name = event.target.name;
     let value = event.target.value;
     this.setState({ [name]: value })
   }
 
-  // submitForm() {
-  //   if (this.validator.allValid()) {
-  //     alert('You submitted the form and stuff!');
-  //   } else {
-  //     this.validator.showMessages();
-
-  //     this.forceUpdate();
-  //   }
-  // }
 
   isValidated() {
     const { first_name, last_name, date_of_birth, gender } = this.state;
@@ -474,18 +462,18 @@ class Applicant extends React.Component {
   render() {
     return (
 
-      <a id ="myform">
-      <div id="form" className="fallback">
-      <div className="contain">
-              <ReactWizard
-                steps={steps}
-                title="TURNTABL APPLICANT FORM"
-                headerTextCenter
-                validate
-                finishButtonClick={this.finishButtonClick}
-              />
+      <a id="myform">
+        <div id="form" className="fallback">
+          <div className="contain">
+            <ReactWizard
+              steps={steps}
+              title="TURNTABL APPLICANT FORM"
+              headerTextCenter
+              validate
+              finishButtonClick={this.finishButtonClick}
+            />
+          </div>
         </div>
-      </div>
       </a>
     );
   }
