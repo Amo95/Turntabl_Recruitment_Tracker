@@ -9,11 +9,9 @@ import java.util.Date;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-@Getter
-@Setter
 @Entity
 public class PasswordResetToken {
-    private static final int EXPIRATION = 20;
+    private static final int EXPIRATION = 10;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -42,4 +40,40 @@ public class PasswordResetToken {
         return new Date(cal.getTime().getTime());
     }
 
+
+    public static int getEXPIRATION() {
+        return EXPIRATION;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Register getRegister() {
+        return register;
+    }
+
+    public void setRegister(Register register) {
+        this.register = register;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 }

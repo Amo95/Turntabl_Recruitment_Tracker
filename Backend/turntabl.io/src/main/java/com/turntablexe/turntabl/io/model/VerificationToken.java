@@ -8,8 +8,6 @@ import java.util.Date;
 import java.util.UUID;
 
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -46,5 +44,42 @@ public class VerificationToken {
     public void updateToken(final String verificationToken) {
         this.verificationToken = verificationToken;
         this.expiryDate = calculateExpiryDate(EXPIRATION);
+    }
+
+
+    public static int getEXPIRATION() {
+        return EXPIRATION;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
+    public Register getRegister() {
+        return register;
+    }
+
+    public void setRegister(Register register) {
+        this.register = register;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
     }
 }

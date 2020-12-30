@@ -83,6 +83,7 @@ public class ApplicantDatamodel {
     @Column(name = "cvFileType")
     private String cvFiletype;
 
+
     @Column(name = "cv")
     private byte[] cv;
 

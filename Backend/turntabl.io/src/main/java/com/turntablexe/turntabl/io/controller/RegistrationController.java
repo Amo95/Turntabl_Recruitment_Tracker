@@ -3,14 +3,14 @@ package com.turntablexe.turntabl.io.controller;
 import com.turntablexe.turntabl.io.exception.UserAlreadyExistException;
 import com.turntablexe.turntabl.io.exception.WrongPasswordException;
 import com.turntablexe.turntabl.io.model.Register;
+import com.turntablexe.turntabl.io.model.ResetEmail;
 import com.turntablexe.turntabl.io.model.ResetPassword;
 import com.turntablexe.turntabl.io.model.VerificationToken;
+import com.turntablexe.turntabl.io.response.LoginResponse;
 import com.turntablexe.turntabl.io.service.PasswordSecurityService;
-import com.turntablexe.turntabl.io.service.UserService;
+import com.turntablexe.turntabl.io.Docs.UserService;
 import com.turntablexe.turntabl.io.service.VerificationTokenService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,9 +19,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 
+
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:3006"})
 @RestController
-@AllArgsConstructor
+@RequestMapping(value = "/api/turntablexe")
 public class RegistrationController {
+
     @Autowired
     private UserService userService;
 
@@ -29,10 +32,10 @@ public class RegistrationController {
     private PasswordSecurityService passwordSecurityService;
 
     @Autowired
-    private final VerificationTokenService verificationTokenService;
+    private  VerificationTokenService verificationTokenService;
 
     @Autowired
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/register")
     public String registerUser(@RequestBody Register register){
@@ -88,33 +91,36 @@ public class RegistrationController {
     }
 
     @PostMapping("/login")
-    public Object loginUser(@RequestBody Register register) throws Exception {
+    public Object loginUser(@RequestBody Register register) {
 
         Optional<String> errorMessage = Optional.of("Wrong username/password");
         Optional<String> accountNotEnabled = Optional.of("Activate account from your email");
 
 
-        Optional<Register> userDetails = userService.fetchUserByEmail(register.getEmail());
+        try{
+            Optional<Register> userDetails = userService.fetchUserByEmail(register.getEmail());
+            LoginResponse loginResponse = new LoginResponse(userDetails.get().getId(),userDetails.get().getEmail(),userDetails.get().isEnabled());
 
-        if (userDetails.isPresent()){
-            Register userInfoInDB = userDetails.get();
-
-            if(!userInfoInDB.isEnabled()){
-                return accountNotEnabled;
-            }else {
-                if (bCryptPasswordEncoder.matches(register.getPassword(), userInfoInDB.getPassword())) {
-                    return userDetails;
+            if (userDetails.isPresent()){
+                Register userInfoInDB = userDetails.get();
+                if(!userInfoInDB.isEnabled()){
+                    return accountNotEnabled;
+                }else {
+                    if (bCryptPasswordEncoder.matches(register.getPassword(), userInfoInDB.getPassword())) {
+                        return loginResponse;
+                    }
                 }
             }
-
-
+        }catch (Exception ex){
         }
+
+
         return errorMessage;
     }
 
     @PostMapping("/resetPassword")
-    String resetPassword(@RequestParam("email") final String  userMail){
-        final Register register = userService.findUserByEmail(userMail);
+    String resetPassword(@RequestBody ResetEmail user_email){
+        final Register register = userService.findUserByEmail(user_email.getEmail());
         if (register != null){
             final String token = UUID.randomUUID().toString();
             userService.createPasswordResetTokenForUser(register, token);

@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileUploadService {
 
+    public void init();
     public void uploadToLocal(MultipartFile file);
     public ApplicantDatamodel uploadToDB(MultipartFile file, String id);
     public ApplicantDatamodel downloadCV(String applicantId);
